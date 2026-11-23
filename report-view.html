@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro Se PSWR Dossier | NesaDiv</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Fonts & Tailwind CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+  <!-- Global Header (Hidden on Print) -->
+  <div id="nd-header"></div>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10">
+
+    <!-- Action Bar (Hidden on Print) -->
+    <div id="nd-action-bar" class="no-print flex flex-wrap items-center justify-between gap-4 mb-6">
+      <div>
+        <span class="text-xs font-mono-num uppercase tracking-wider text-slate-500">Private Forensic Dossier</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="window.print()" class="nd-btn-primary px-5 py-2.5 text-xs flex items-center gap-2">
+          <span>Download / Print A4 PDF</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading / Error State -->
+    <div id="nd-loading" class="nd-card p-10 text-center">
+      <p class="text-sm font-medium text-slate-600">Loading your verified Pro Se PSWR...</p>
+    </div>
+
+    <div id="nd-error" class="hidden nd-card p-10 text-center border-rose-200 bg-rose-50/40">
+      <h1 class="text-lg font-bold text-rose-900 mb-2">Report Not Found or Invalid Token</h1>
+      <p class="text-sm text-rose-700 mb-5">Please use the exact private link sent to your email address.</p>
+      <a href="/salary-dossier.html" class="nd-btn-primary px-5 py-2.5 text-xs inline-block">Generate a New Pro Se PSWR</a>
+    </div>
+
+    <!-- Printable Dossier Container -->
+    <article id="nd-report-container" class="hidden space-y-6">
+
+      <!-- Dossier Masthead -->
+      <div class="nd-card p-7 sm:p-9 bg-white">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-6 border-b border-slate-200">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-6 h-6 rounded bg-slate-900 text-white flex items-center justify-center font-bold text-[10px]">ND</div>
+              <span class="text-xs font-bold uppercase tracking-widest text-slate-900">NesaDiv Institutional Intelligence</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+              Pro Se Personal Salary Worthiness Report
+            </h1>
+            <p class="text-xs text-slate-500 mt-1">
+              Prepared for <strong id="r-name" class="text-slate-800">—</strong> &middot; <span id="r-date">—</span>
+            </p>
+          </div>
+          <div class="text-left sm:text-right">
+            <span class="inline-block px-2.5 py-1 rounded bg-teal-50 border border-teal-200 text-[11px] font-mono-num font-semibold text-teal-800">
+              Q4 2026 VERIFIED INDEX
+            </span>
+            <p class="text-[11px] font-mono-num text-slate-400 mt-1.5">REF: <span id="r-ref">—</span></p>
+          </div>
+        </div>
+
+        <!-- Candidate Parameters -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 text-xs">
+          <div>
+            <span class="block text-slate-400 uppercase tracking-wider text-[10px]">Role</span>
+            <strong id="r-role" class="text-slate-900 font-semibold">—</strong>
+          </div>
+          <div>
+            <span class="block text-slate-400 uppercase tracking-wider text-[10px]">Experience Band</span>
+            <strong id="r-exp" class="text-slate-900 font-semibold">—</strong>
+          </div>
+          <div>
+            <span class="block text-slate-400 uppercase tracking-wider text-[10px]">City</span>
+            <strong id="r-city" class="text-slate-900 font-semibold">—</strong>
+          </div>
+          <div>
+            <span class="block text-slate-400 uppercase tracking-wider text-[10px]">Employer Tier</span>
+            <strong id="r-tier" class="text-slate-900 font-semibold">—</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Executive Verdict Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="nd-card p-6 bg-white">
+          <span class="block text-[11px] uppercase tracking-wider text-slate-500 mb-1">Your Fixed Gross</span>
+          <div id="r-current" class="text-2xl font-bold font-mono-num text-slate-900">—</div>
+          <span class="text-xs text-slate-500">Guaranteed Annual Cash</span>
+        </div>
+        <div class="nd-card p-6 bg-slate-900 text-white border-slate-800">
+          <span class="block text-[11px] uppercase tracking-wider text-teal-400 mb-1">Market Standing</span>
+          <div id="r-percentile" class="text-2xl font-bold font-mono-num text-white">—</div>
+          <span id="r-verdict-label" class="text-xs text-slate-300">—</span>
+        </div>
+        <div class="nd-card p-6 bg-white">
+          <span class="block text-[11px] uppercase tracking-wider text-slate-500 mb-1">Gap to P75 Target</span>
+          <div id="r-gap" class="text-2xl font-bold font-mono-num text-teal-700">—</div>
+          <span class="text-xs text-slate-500">Annual Negotiable Upside</span>
+        </div>
+      </div>
+
+      <!-- Market Benchmark Table -->
+      <div class="nd-card p-7 bg-white">
+        <h2 class="text-base font-bold text-slate-900 mb-4">Q4 2026 Verified Percentile Bands (Fixed Gross LPA)</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500">
+                <th class="py-2.5 pr-4">Percentile</th>
+                <th class="py-2.5 px-4">Market Tier</th>
+                <th class="py-2.5 pl-4 text-right">Fixed Gross (LPA)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr>
+                <td class="py-3 pr-4 font-mono-num font-semibold text-slate-700">P25</td>
+                <td class="py-3 px-4 text-slate-600">Conservative / Entry Band</td>
+                <td id="r-p25" class="py-3 pl-4 text-right font-mono-num font-semibold text-slate-900">—</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-3 pr-4 font-mono-num font-bold text-slate-900">P50 (Median)</td>
+                <td class="py-3 px-4 font-medium text-slate-800">Market Fair Value</td>
+                <td id="r-p50" class="py-3 pl-4 text-right font-mono-num font-bold text-slate-900">—</td>
+              </tr>
+              <tr class="bg-teal-50/40">
+                <td class="py-3 pr-4 font-mono-num font-bold text-teal-800">P75</td>
+                <td class="py-3 px-4 font-medium text-teal-900">Strong Performer / Target Ask</td>
+                <td id="r-p75" class="py-3 pl-4 text-right font-mono-num font-bold text-teal-800">—</td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-4 font-mono-num font-semibold text-slate-700">P90</td>
+                <td class="py-3 px-4 text-slate-600">Top-Decile / Rare Skillset</td>
+                <td id="r-p90" class="py-3 pl-4 text-right font-mono-num font-semibold text-slate-900">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Counter-Offer / Negotiation Script -->
+      <div class="nd-card p-7 bg-white">
+        <h2 class="text-base font-bold text-slate-900 mb-2">Tailored Counter-Offer &amp; HR Screening Script</h2>
+        <p class="text-xs text-slate-500 mb-4">Use this exact framing during recruiter screenings or final offer negotiations.</p>
+        <div id="r-script" class="p-5 rounded-lg bg-slate-50 border border-slate-200 text-sm text-slate-800 leading-relaxed whitespace-pre-line font-normal">
+          —
+        </div>
+      </div>
+
+      <!-- Footer Seal inside Print -->
+      <div class="text-center text-[11px] text-slate-400 pt-2">
+        NesaDiv Forensic Compensation Intelligence &middot; Zero-BGV Policy: We never contact your current or former employers.
+      </div>
+
+      <!-- Upsell Banner (Hidden on Print) -->
+      <div class="no-print nd-card p-6 bg-slate-900 text-white border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal-400 mb-1">Preparing for an Internal Raise or Multi-Offer Switch?</p>
+          <p class="text-sm text-slate-200">Unlock the Premium PSWR, Appraisal Worthiness Report (AWR), and ESOP Visualizer inside the Professionals Dashboard.</p>
+        </div>
+        <a href="/dashboard/login.html" class="bg-white text-slate-900 font-semibold text-xs px-4 py-2.5 rounded-lg shrink-0 hover:bg-slate-100">
+          Open Dashboard &rarr;
+        </a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Global Footer (Hidden on Print) -->
+  <div id="nd-footer"></div>
+
+  <script src="/assets/js/layout.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const isDemo = params.get('demo') === 'true';
+
+      const loadingEl = document.getElementById('nd-loading');
+      const errorEl = document.getElementById('nd-error');
+      const reportEl = document.getElementById('nd-report-container');
+
+      function renderReport(data) {
+        const inp = data.input_payload || {};
+        const res = data.computed_result || {};
+
+        document.getElementById('r-name').textContent = inp.full_name || 'Verified Professional';
+        document.getElementById('r-date').textContent = new Date(data.created_at || Date.now()).toLocaleDateString('en-IN', {
+          day: '2-digit', month: 'short', year: 'numeric'
+        });
+        document.getElementById('r-ref').textContent = (data.access_token || 'DEMO-PSWR').slice(0, 10).toUpperCase();
+
+        document.getElementById('r-role').textContent = inp.role_title || '—';
+        document.getElementById('r-exp').textContent = inp.exp_band || '—';
+        document.getElementById('r-city').textContent = inp.city || '—';
+        document.getElementById('r-tier').textContent = inp.employer_tier || '—';
+
+        document.getElementById('r-current').textContent = `₹${Number(inp.current_fixed_lpa || 0).toFixed(1)} LPA`;
+        document.getElementById('r-percentile').textContent = res.percentile_label || '—';
+        document.getElementById('r-verdict-label').textContent = res.verdict_summary || '—';
+
+        const gapVal = Number(res.gap_to_p75_lpa || 0);
+        document.getElementById('r-gap').textContent = gapVal > 0 ? `+₹${gapVal.toFixed(1)} LPA` : 'At/Above P75';
+
+        document.getElementById('r-p25').textContent = `₹${Number(res.p25_lpa || 0).toFixed(1)} LPA`;
+        document.getElementById('r-p50').textContent = `₹${Number(res.p50_lpa || 0).toFixed(1)} LPA`;
+        document.getElementById('r-p75').textContent = `₹${Number(res.p75_lpa || 0).toFixed(1)} LPA`;
+        document.getElementById('r-p90').textContent = `₹${Number(res.p90_lpa || 0).toFixed(1)} LPA`;
+
+        document.getElementById('r-script').textContent = data.ai_script || '—';
+
+        loadingEl.classList.add('hidden');
+        reportEl.classList.remove('hidden');
+      }
+
+      if (isDemo) {
+        renderReport({
+          access_token: 'DEMO94F2A1',
+          created_at: new Date().toISOString(),
+          input_payload: {
+            full_name: 'Karthik Nair (Sample Preview)',
+            role_title: 'Software Engineer (Backend)',
+            exp_band: '1y-3y',
+            city: 'Bengaluru',
+            employer_tier: 'High-Growth Startups & Product',
+            current_fixed_lpa: 16.5
+          },
+          computed_result: {
+            percentile_label: 'P38 (Below Median)',
+            verdict_summary: '₹2.5 LPA below Q4 2026 P50 market median',
+            gap_to_p75_lpa: 8.5,
+            p25_lpa: 14.0,
+            p50_lpa: 19.0,
+            p75_lpa: 25.0,
+            p90_lpa: 32.0
+          },
+          ai_script:
+            'Hi [Recruiter Name],\n\nThank you for sharing the details for the Software Engineer (Backend) role. Based on Q4 2026 Bengaluru benchmarks for High-Growth Product teams in the 1–3 year band, fixed compensation sits between ₹19.0 LPA (median) and ₹25.0 LPA (P75).\n\nGiven my production backend ownership, I am targeting a Fixed Gross of ₹23.5–₹25.0 LPA (excluding variable/ESOPs). Happy to discuss how we can structure the fixed base within your band.\n\nBest regards,\nKarthik'
+        });
+        return;
+      }
+
+      if (!token) {
+        loadingEl.classList.add('hidden');
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
+      fetch(`/api/get-report?token=${encodeURIComponent(token)}`)
+        .then(r => {
+          if (!r.ok) throw new Error('Not found');
+          return r.json();
+        })
+        .then(renderReport)
+        .catch(() => {
+          loadingEl.classList.add('hidden');
+          errorEl.classList.remove('hidden');
+        });
+    })();
+  </script>
+</body>
+</html>
