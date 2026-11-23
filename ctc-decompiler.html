@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html lang="en-IN">
+<html lang="en-IN" dir="ltr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>Forensic CTC Decompiler (2026–27 New Tax Regime) | NesaDiv</title>
   <meta name="description" content="Free Indian CTC to in-hand salary calculator for Tax Year 2026–27. Strip out phantom CTC, variable pay, ESOPs, PF, and gratuity to see your exact monthly take-home pay." />
-  <link rel="canonical" href="https://nesadiv.com/ctc-decompiler.html" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#2563EB" />
+  <link rel="canonical" href="https://www.nesadiv.com/ctc-decompiler.html" />
+
+  <!-- PWA Manifest & Brand Icons -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
 
   <!-- Open Graph / Social -->
+  <meta property="og:locale" content="en_IN" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="NesaDiv" />
   <meta property="og:title" content="Forensic CTC Decompiler (2026–27) | NesaDiv" />
   <meta property="og:description" content="Expose the Phantom CTC gap. Calculate your exact monthly in-hand salary under India's 2026–27 New Tax Regime." />
-  <meta property="og:url" content="https://nesadiv.com/ctc-decompiler.html" />
+  <meta property="og:url" content="https://www.nesadiv.com/ctc-decompiler.html" />
+  <meta property="og:image" content="https://www.nesadiv.com/logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Fonts & Tailwind CDN -->
+  <!-- Typography & Tailwind CDN -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/main.css" />
 
@@ -66,16 +75,16 @@
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased">
 
-  <!-- Global Header -->
+  <!-- Global Master Header -->
   <div id="nd-header"></div>
 
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+  <main id="nd-main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
     <!-- Page Header -->
     <div class="max-w-3xl mb-10">
-      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-teal-50 border border-teal-200 text-xs font-mono-num font-semibold text-teal-800 mb-3">
+      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-blue-50 border border-blue-200 text-xs font-mono-num font-semibold text-blue-900 mb-3">
         100% FREE &middot; NO LOGIN &middot; TAX YEAR 2026–27 NEW REGIME
       </div>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-3">
+      <h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-950 mb-3">
         Forensic CTC Decompiler
       </h1>
       <p class="text-base text-slate-600 leading-relaxed">
@@ -89,8 +98,8 @@
       <!-- Left Column: Inputs -->
       <div class="lg:col-span-7 nd-card p-6 sm:p-8">
         <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
-          <h2 class="text-base font-bold text-slate-900">Offer Letter Components (Annual ₹)</h2>
-          <button id="nd-reset-btn" type="button" class="text-xs font-semibold text-teal-700 hover:text-teal-900 underline">
+          <h2 class="font-display text-base font-bold text-slate-950">Offer Letter Components (Annual ₹)</h2>
+          <button id="nd-reset-btn" type="button" class="text-xs font-semibold text-blue-600 hover:text-blue-800 underline">
             Load ₹24 LPA Sample
           </button>
         </div>
@@ -102,7 +111,7 @@
               Headline Annual CTC (₹)
             </label>
             <input type="number" id="headlineCTC" value="2400000" min="0" step="10000"
-              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg font-mono-num text-base font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-teal-600" />
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg font-mono-num text-base font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600" />
             <p class="text-xs text-slate-500 mt-1">Total Cost to Company printed at the top of your offer letter.</p>
           </div>
 
@@ -112,32 +121,32 @@
               <div>
                 <label for="variablePay" class="block text-xs font-medium text-slate-700 mb-1">Variable / Performance Bonus (₹/yr)</label>
                 <input type="number" id="variablePay" value="240000" min="0" step="5000"
-                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
               </div>
               <div>
                 <label for="esopAnnual" class="block text-xs font-medium text-slate-700 mb-1">ESOP / RSU Annualized Value (₹/yr)</label>
                 <input type="number" id="esopAnnual" value="200000" min="0" step="5000"
-                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
               </div>
               <div>
                 <label for="joiningBonus" class="block text-xs font-medium text-slate-700 mb-1">Joining / Retention Bonus (₹/yr)</label>
                 <input type="number" id="joiningBonus" value="100000" min="0" step="5000"
-                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
               </div>
               <div>
                 <label for="employerPF" class="block text-xs font-medium text-slate-700 mb-1">Employer PF Contribution (₹/yr)</label>
                 <input type="number" id="employerPF" value="21600" min="0" step="1000"
-                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
               </div>
               <div>
                 <label for="gratuity" class="block text-xs font-medium text-slate-700 mb-1">Gratuity Component (₹/yr)</label>
                 <input type="number" id="gratuity" value="38400" min="0" step="1000"
-                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
               </div>
               <div>
                 <label for="insurance" class="block text-xs font-medium text-slate-700 mb-1">Medical Insurance / Perks in CTC (₹/yr)</label>
                 <input type="number" id="insurance" value="20000" min="0" step="1000"
-                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
               </div>
             </div>
           </div>
@@ -148,12 +157,12 @@
               <div>
                 <label for="employeePF" class="block text-xs font-medium text-slate-700 mb-1">Employee PF Deduction (₹/yr)</label>
                 <input type="number" id="employeePF" value="21600" min="0" step="1000"
-                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
               </div>
               <div>
                 <label for="profTaxAnnual" class="block text-xs font-medium text-slate-700 mb-1">Professional Tax (₹/yr)</label>
                 <input type="number" id="profTaxAnnual" value="2400" min="0" step="100"
-                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
               </div>
             </div>
           </div>
@@ -162,28 +171,28 @@
 
       <!-- Right Column: Live Forensic Output -->
       <div class="lg:col-span-5 space-y-6">
-        <div class="nd-card p-6 sm:p-8 bg-slate-900 text-white border-slate-800">
-          <p class="text-xs font-semibold uppercase tracking-widest text-teal-400 mb-1">True Net Monthly In-Hand</p>
+        <div class="nd-card p-6 sm:p-8 text-white border-slate-900" style="background: linear-gradient(135deg, #020617 0%, #0B3D91 100%);">
+          <p class="font-mono-num text-xs font-semibold uppercase tracking-widest mb-1" style="color:#59C3DB;">True Net Monthly In-Hand</p>
           <div id="out-monthly-net" class="text-4xl sm:text-5xl font-bold font-mono-num tracking-tight text-white mb-4">
             ₹0
           </div>
 
           <!-- Key Ratios -->
-          <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
-            <div class="bg-slate-800/70 rounded-lg p-3">
-              <span class="block text-[11px] uppercase tracking-wider text-slate-400">Liquidity Ratio</span>
-              <span id="out-liquidity-ratio" class="text-xl font-bold font-mono-num text-emerald-400">0%</span>
+          <div class="grid grid-cols-2 gap-3 pt-4 border-t border-white/15">
+            <div class="bg-white/10 rounded-lg p-3">
+              <span class="block text-[11px] uppercase tracking-wider text-slate-300">Liquidity Ratio</span>
+              <span id="out-liquidity-ratio" class="text-xl font-bold font-mono-num text-emerald-300">0%</span>
             </div>
-            <div class="bg-slate-800/70 rounded-lg p-3">
-              <span class="block text-[11px] uppercase tracking-wider text-slate-400">Phantom CTC Gap</span>
-              <span id="out-phantom-ratio" class="text-xl font-bold font-mono-num text-rose-400">0%</span>
+            <div class="bg-white/10 rounded-lg p-3">
+              <span class="block text-[11px] uppercase tracking-wider text-slate-300">Phantom CTC Gap</span>
+              <span id="out-phantom-ratio" class="text-xl font-bold font-mono-num text-rose-300">0%</span>
             </div>
           </div>
         </div>
 
         <!-- Itemized Breakdown Table -->
         <div class="nd-card p-6">
-          <h3 class="text-sm font-bold text-slate-900 mb-4">Forensic Cashflow Breakdown</h3>
+          <h3 class="font-display text-sm font-bold text-slate-950 mb-4">Forensic Cashflow Breakdown</h3>
           <dl class="space-y-2.5 text-sm">
             <div class="flex justify-between py-1.5 border-b border-slate-100">
               <dt class="text-slate-600">Headline CTC (Monthly Avg)</dt>
@@ -206,15 +215,15 @@
               <dd id="out-monthly-statutory" class="font-mono-num text-slate-700">-₹0</dd>
             </div>
             <div class="flex justify-between pt-2">
-              <dt class="font-bold text-slate-900">Annual Net Cash In-Hand</dt>
+              <dt class="font-bold text-slate-950">Annual Net Cash In-Hand</dt>
               <dd id="out-annual-net" class="font-mono-num font-bold text-emerald-700">₹0</dd>
             </div>
           </dl>
         </div>
 
         <!-- Conversion Funnel CTA -->
-        <div class="nd-card p-6 border-teal-200 bg-teal-50/40">
-          <h3 class="text-sm font-bold text-slate-900 mb-1.5">Now you know your take-home. Is it actually fair?</h3>
+        <div class="nd-card p-6 border-blue-200 bg-blue-50/40">
+          <h3 class="font-display text-sm font-bold text-slate-950 mb-1.5">Now you know your take-home. Is it actually fair?</h3>
           <p class="text-xs text-slate-600 leading-relaxed mb-4">
             Benchmark this exact Fixed Gross against verified Q4 2026 percentiles (P25–P90) for your role, city, and employer tier.
           </p>
@@ -223,7 +232,7 @@
               Get Pro Se PSWR (₹299)
             </a>
             <a href="/dashboard/login.html" class="text-center text-xs font-semibold text-slate-800 bg-white border border-slate-300 rounded-lg px-4 py-2.5 hover:bg-slate-50 transition">
-              Dashboard Login
+              Member Dashboard
             </a>
           </div>
         </div>
@@ -280,7 +289,6 @@
         runDecompiler();
       });
 
-      // Initial calculation on page load
       runDecompiler();
     })();
   </script>
