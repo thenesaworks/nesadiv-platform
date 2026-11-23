@@ -1,0 +1,100 @@
+/* ==========================================================================
+   NESADIV — INSTITUTIONAL DESIGN SYSTEM & PRINT-TO-PDF RULES
+   ========================================================================== */
+
+:root {
+  --nd-ink: #0f172a;          /* Deep Slate 900 */
+  --nd-ink-muted: #475569;    /* Slate 600 */
+  --nd-bg: #ffffff;
+  --nd-surface: #f8fafc;      /* Slate 50 */
+  --nd-border: #e2e8f0;       /* Slate 200 */
+  --nd-accent: #0f766e;       /* Institutional Teal 700 */
+  --nd-accent-hover: #115e59; /* Teal 800 */
+  --nd-danger: #be123c;       /* Rose 700 (Phantom CTC / Flight Risk) */
+  --nd-success: #047857;      /* Emerald 700 (True Net Liquidity) */
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--nd-ink);
+  background-color: var(--nd-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-mono-num {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Institutional Card & Table Polish */
+.nd-card {
+  background: var(--nd-bg);
+  border: 1px solid var(--nd-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.nd-btn-primary {
+  background-color: var(--nd-ink);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.nd-btn-primary:hover {
+  background-color: #1e293b;
+}
+
+.nd-btn-accent {
+  background-color: var(--nd-accent);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: background-color 0.15s ease;
+}
+
+.nd-btn-accent:hover {
+  background-color: var(--nd-accent-hover);
+}
+
+/* Subtle Market Ticker Bar */
+.nd-ticker {
+  background-color: #0f172a;
+  color: #cbd5e1;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* Print-to-PDF Rules for Pro Se PSWR, Premium PSWR, AWR & Honest CTC Offers */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .no-print,
+  #nd-header,
+  #nd-footer,
+  #nd-dashboard-sidebar,
+  #nd-employer-sidebar {
+    display: none !important;
+  }
+
+  .nd-print-break {
+    page-break-before: always;
+  }
+
+  .nd-card {
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+  }
+}
