@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forensic CTC Decompiler (2026–27 New Tax Regime) | NesaDiv</title>
+  <meta name="description" content="Free Indian CTC to in-hand salary calculator for Tax Year 2026–27. Strip out phantom CTC, variable pay, ESOPs, PF, and gratuity to see your exact monthly take-home pay." />
+  <link rel="canonical" href="https://nesadiv.com/ctc-decompiler.html" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NesaDiv" />
+  <meta property="og:title" content="Forensic CTC Decompiler (2026–27) | NesaDiv" />
+  <meta property="og:description" content="Expose the Phantom CTC gap. Calculate your exact monthly in-hand salary under India's 2026–27 New Tax Regime." />
+  <meta property="og:url" content="https://nesadiv.com/ctc-decompiler.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts & Tailwind CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+
+  <!-- AEO / SEO Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "NesaDiv Forensic CTC Decompiler",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        },
+        "description": "Free deterministic Indian CTC to monthly in-hand salary calculator aligned with Tax Year 2026-27 New Tax Regime slabs."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Phantom CTC in an Indian offer letter?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Phantom CTC refers to non-guaranteed or non-monthly-cash components bundled into your headline Cost to Company, such as performance variable pay, illiquid ESOP grants, one-time joining bonuses, employer PF, gratuity, and corporate insurance premiums."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which tax regime does the NesaDiv CTC Decompiler use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It uses India's Tax Year 2026-27 New Tax Regime, including the ₹75,000 standard deduction, Section 87A rebate (nil tax up to ₹12,00,000 taxable income with marginal relief), applicable surcharge, and 4% health and education cess."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+  <!-- Global Header -->
+  <div id="nd-header"></div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <!-- Page Header -->
+    <div class="max-w-3xl mb-10">
+      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-teal-50 border border-teal-200 text-xs font-mono-num font-semibold text-teal-800 mb-3">
+        100% FREE &middot; NO LOGIN &middot; TAX YEAR 2026–27 NEW REGIME
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-3">
+        Forensic CTC Decompiler
+      </h1>
+      <p class="text-base text-slate-600 leading-relaxed">
+        Enter the numbers from your offer letter or appraisal sheet. We strip out phantom components and compute your exact guaranteed monthly liquidity.
+      </p>
+    </div>
+
+    <!-- Calculator Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- Left Column: Inputs -->
+      <div class="lg:col-span-7 nd-card p-6 sm:p-8">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
+          <h2 class="text-base font-bold text-slate-900">Offer Letter Components (Annual ₹)</h2>
+          <button id="nd-reset-btn" type="button" class="text-xs font-semibold text-teal-700 hover:text-teal-900 underline">
+            Load ₹24 LPA Sample
+          </button>
+        </div>
+
+        <form id="nd-decompiler-form" class="space-y-5">
+          <!-- Headline CTC -->
+          <div>
+            <label for="headlineCTC" class="block text-sm font-semibold text-slate-800 mb-1.5">
+              Headline Annual CTC (₹)
+            </label>
+            <input type="number" id="headlineCTC" value="2400000" min="0" step="10000"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg font-mono-num text-base font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-teal-600" />
+            <p class="text-xs text-slate-500 mt-1">Total Cost to Company printed at the top of your offer letter.</p>
+          </div>
+
+          <div class="pt-2 border-t border-slate-100">
+            <p class="text-xs font-semibold uppercase tracking-wider text-rose-700 mb-3">Phantom / Non-Monthly-Cash Components</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="variablePay" class="block text-xs font-medium text-slate-700 mb-1">Variable / Performance Bonus (₹/yr)</label>
+                <input type="number" id="variablePay" value="240000" min="0" step="5000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+              </div>
+              <div>
+                <label for="esopAnnual" class="block text-xs font-medium text-slate-700 mb-1">ESOP / RSU Annualized Value (₹/yr)</label>
+                <input type="number" id="esopAnnual" value="200000" min="0" step="5000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+              </div>
+              <div>
+                <label for="joiningBonus" class="block text-xs font-medium text-slate-700 mb-1">Joining / Retention Bonus (₹/yr)</label>
+                <input type="number" id="joiningBonus" value="100000" min="0" step="5000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+              </div>
+              <div>
+                <label for="employerPF" class="block text-xs font-medium text-slate-700 mb-1">Employer PF Contribution (₹/yr)</label>
+                <input type="number" id="employerPF" value="21600" min="0" step="1000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+              </div>
+              <div>
+                <label for="gratuity" class="block text-xs font-medium text-slate-700 mb-1">Gratuity Component (₹/yr)</label>
+                <input type="number" id="gratuity" value="38400" min="0" step="1000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+              </div>
+              <div>
+                <label for="insurance" class="block text-xs font-medium text-slate-700 mb-1">Medical Insurance / Perks in CTC (₹/yr)</label>
+                <input type="number" id="insurance" value="20000" min="0" step="1000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-slate-100">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-600 mb-3">Employee Statutory Deductions</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="employeePF" class="block text-xs font-medium text-slate-700 mb-1">Employee PF Deduction (₹/yr)</label>
+                <input type="number" id="employeePF" value="21600" min="0" step="1000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+              </div>
+              <div>
+                <label for="profTaxAnnual" class="block text-xs font-medium text-slate-700 mb-1">Professional Tax (₹/yr)</label>
+                <input type="number" id="profTaxAnnual" value="2400" min="0" step="100"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right Column: Live Forensic Output -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="nd-card p-6 sm:p-8 bg-slate-900 text-white border-slate-800">
+          <p class="text-xs font-semibold uppercase tracking-widest text-teal-400 mb-1">True Net Monthly In-Hand</p>
+          <div id="out-monthly-net" class="text-4xl sm:text-5xl font-bold font-mono-num tracking-tight text-white mb-4">
+            ₹0
+          </div>
+
+          <!-- Key Ratios -->
+          <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800">
+            <div class="bg-slate-800/70 rounded-lg p-3">
+              <span class="block text-[11px] uppercase tracking-wider text-slate-400">Liquidity Ratio</span>
+              <span id="out-liquidity-ratio" class="text-xl font-bold font-mono-num text-emerald-400">0%</span>
+            </div>
+            <div class="bg-slate-800/70 rounded-lg p-3">
+              <span class="block text-[11px] uppercase tracking-wider text-slate-400">Phantom CTC Gap</span>
+              <span id="out-phantom-ratio" class="text-xl font-bold font-mono-num text-rose-400">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Itemized Breakdown Table -->
+        <div class="nd-card p-6">
+          <h3 class="text-sm font-bold text-slate-900 mb-4">Forensic Cashflow Breakdown</h3>
+          <dl class="space-y-2.5 text-sm">
+            <div class="flex justify-between py-1.5 border-b border-slate-100">
+              <dt class="text-slate-600">Headline CTC (Monthly Avg)</dt>
+              <dd id="out-headline-monthly" class="font-mono-num font-semibold text-slate-900">₹0</dd>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-slate-100">
+              <dt class="text-rose-700">Total Phantom CTC (Annual)</dt>
+              <dd id="out-phantom-total" class="font-mono-num font-semibold text-rose-700">-₹0</dd>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-slate-100">
+              <dt class="text-slate-600">Fixed Gross Salary (Annual)</dt>
+              <dd id="out-fixed-gross" class="font-mono-num font-semibold text-slate-900">₹0</dd>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-slate-100">
+              <dt class="text-slate-600">Monthly Income Tax (2026–27)</dt>
+              <dd id="out-monthly-tax" class="font-mono-num text-slate-700">-₹0</dd>
+            </div>
+            <div class="flex justify-between py-1.5 border-b border-slate-100">
+              <dt class="text-slate-600">Monthly Employee PF + Prof. Tax</dt>
+              <dd id="out-monthly-statutory" class="font-mono-num text-slate-700">-₹0</dd>
+            </div>
+            <div class="flex justify-between pt-2">
+              <dt class="font-bold text-slate-900">Annual Net Cash In-Hand</dt>
+              <dd id="out-annual-net" class="font-mono-num font-bold text-emerald-700">₹0</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Conversion Funnel CTA -->
+        <div class="nd-card p-6 border-teal-200 bg-teal-50/40">
+          <h3 class="text-sm font-bold text-slate-900 mb-1.5">Now you know your take-home. Is it actually fair?</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Benchmark this exact Fixed Gross against verified Q4 2026 percentiles (P25–P90) for your role, city, and employer tier.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-2.5">
+            <a href="/salary-dossier.html" class="nd-btn-accent text-center text-xs px-4 py-2.5 flex-1">
+              Get Pro Se PSWR (₹299)
+            </a>
+            <a href="/dashboard/login.html" class="text-center text-xs font-semibold text-slate-800 bg-white border border-slate-300 rounded-lg px-4 py-2.5 hover:bg-slate-50 transition">
+              Dashboard Login
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <div id="nd-footer"></div>
+
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/decompiler.js"></script>
+  <script>
+    (function () {
+      const fields = [
+        'headlineCTC', 'variablePay', 'esopAnnual', 'joiningBonus',
+        'employerPF', 'gratuity', 'insurance', 'employeePF', 'profTaxAnnual'
+      ];
+
+      function runDecompiler() {
+        const input = {};
+        fields.forEach(id => {
+          input[id] = Number(document.getElementById(id).value) || 0;
+        });
+
+        const res = window.ndDecompileCTC(input);
+        const fmt = window.ndFormatINR;
+
+        document.getElementById('out-monthly-net').textContent = fmt(res.monthlyNetInHand);
+        document.getElementById('out-liquidity-ratio').textContent = res.liquidityRatio + '%';
+        document.getElementById('out-phantom-ratio').textContent = res.phantomRatio + '%';
+        document.getElementById('out-headline-monthly').textContent = fmt(res.headlineMonthly);
+        document.getElementById('out-phantom-total').textContent = '-' + fmt(res.phantomTotal);
+        document.getElementById('out-fixed-gross').textContent = fmt(res.fixedGrossAnnual);
+        document.getElementById('out-monthly-tax').textContent = '-' + fmt(res.monthlyTax);
+        document.getElementById('out-monthly-statutory').textContent = '-' + fmt(res.monthlyEmployeePF + res.monthlyProfTax);
+        document.getElementById('out-annual-net').textContent = fmt(res.annualNetInHand);
+      }
+
+      fields.forEach(id => {
+        document.getElementById(id).addEventListener('input', runDecompiler);
+      });
+
+      document.getElementById('nd-reset-btn').addEventListener('click', () => {
+        const defaults = {
+          headlineCTC: 2400000, variablePay: 240000, esopAnnual: 200000,
+          joiningBonus: 100000, employerPF: 21600, gratuity: 38400,
+          insurance: 20000, employeePF: 21600, profTaxAnnual: 2400
+        };
+        Object.keys(defaults).forEach(id => {
+          document.getElementById(id).value = defaults[id];
+        });
+        runDecompiler();
+      });
+
+      // Initial calculation on page load
+      runDecompiler();
+    })();
+  </script>
+</body>
+</html>
