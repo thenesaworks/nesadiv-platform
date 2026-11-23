@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professionals Dashboard | NesaDiv</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Fonts, Tailwind & Supabase CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+  <!-- Auth Loading Overlay -->
+  <div id="nd-auth-loader" class="fixed inset-0 z-50 bg-white flex items-center justify-center">
+    <div class="text-center">
+      <div class="w-9 h-9 rounded bg-slate-900 text-white flex items-center justify-center font-bold text-sm mx-auto mb-3">ND</div>
+      <p class="text-xs font-medium text-slate-500">Verifying secure session...</p>
+    </div>
+  </div>
+
+  <div class="min-h-screen flex flex-col lg:flex-row">
+
+    <!-- Sidebar -->
+    <aside id="nd-dashboard-sidebar" class="w-full lg:w-64 bg-slate-950 text-slate-300 flex flex-col shrink-0">
+      <div class="h-16 px-5 flex items-center justify-between border-b border-slate-800">
+        <a href="/index.html" class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded bg-white text-slate-900 flex items-center justify-center font-bold text-xs">ND</div>
+          <span class="text-white font-bold tracking-tight text-sm">NesaDiv</span>
+        </a>
+        <button id="nd-side-toggle" type="button" class="lg:hidden text-slate-400 hover:text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="nd-side-nav" class="hidden lg:flex flex-col flex-1 justify-between p-4">
+        <nav class="space-y-1 text-sm font-medium">
+          <p class="px-3 pt-1 pb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-500">Intelligence Suite</p>
+          <a href="/dashboard/index.html" class="block px-3 py-2.5 rounded-lg bg-slate-800 text-white">
+            Overview
+          </a>
+          <a href="/dashboard/premium-pswr.html" class="block px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition">
+            Premium PSWR
+          </a>
+          <a href="/dashboard/awr.html" class="block px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition">
+            Appraisal Report (AWR)
+          </a>
+          <a href="/dashboard/esop-visualizer.html" class="block px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition">
+            ESOP Visualizer
+          </a>
+          <a href="/dashboard/sponsor.html" class="block px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition">
+            Sponsor / Gift Report
+          </a>
+
+          <p class="px-3 pt-5 pb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-500">Quick Tools</p>
+          <a href="/ctc-decompiler.html" class="block px-3 py-2 rounded-lg text-xs text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            CTC Decompiler &rarr;
+          </a>
+        </nav>
+
+        <div class="pt-4 mt-6 border-t border-slate-800">
+          <div class="px-3 mb-3">
+            <p id="side-user-name" class="text-xs font-semibold text-white truncate">—</p>
+            <p id="side-user-email" class="text-[11px] text-slate-500 truncate">—</p>
+          </div>
+          <button onclick="window.ndLogout('/dashboard/login.html')" type="button"
+            class="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-rose-400 hover:bg-rose-950/50 hover:text-rose-300 transition">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 p-5 sm:p-8 lg:p-10 max-w-6xl">
+      <!-- Top Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 mb-8">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-widest text-teal-700 mb-1">Professionals Workspace</p>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+            Welcome back, <span id="dash-first-name">Professional</span>
+          </h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-xs">
+            <span class="text-slate-500">Report Credits:</span>
+            <strong id="dash-credits" class="font-mono-num text-slate-900 ml-1">0</strong>
+          </div>
+          <div class="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-xs">
+            <span class="text-slate-500">Referral Code:</span>
+            <strong id="dash-ref-code" class="font-mono-num text-teal-700 ml-1">—</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Products Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <!-- Premium PSWR -->
+        <div class="nd-card p-6 sm:p-7 flex flex-col justify-between bg-white">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-mono-num font-semibold uppercase px-2.5 py-1 rounded bg-teal-50 text-teal-800 border border-teal-200">
+                Job Switch Dossier
+              </span>
+              <span class="text-xs text-slate-500">Multi-Tier Benchmarks</span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">Premium PSWR</h2>
+            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Compare IT Services, High-Growth Startups, and GCCs side by side with full counter-offer scripts, city pay parity, and fixed-vs-variable forensic audits.
+            </p>
+          </div>
+          <a href="/dashboard/premium-pswr.html" class="nd-btn-primary text-center text-xs px-4 py-2.5">
+            Generate Premium PSWR &rarr;
+          </a>
+        </div>
+
+        <!-- Appraisal Worthiness Report (AWR) -->
+        <div class="nd-card p-6 sm:p-7 flex flex-col justify-between bg-white">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-mono-num font-semibold uppercase px-2.5 py-1 rounded bg-slate-100 text-slate-800 border border-slate-200">
+                Internal Raise &amp; Promotion
+              </span>
+              <span class="text-xs text-slate-500">Pay Compression Audit</span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">Appraisal Worthiness Report (AWR)</h2>
+            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Defend your annual appraisal or promotion ask with institutional Q4 2026 data. Quantifies internal pay compression against external hiring bands.
+            </p>
+          </div>
+          <a href="/dashboard/awr.html" class="nd-btn-accent text-center text-xs px-4 py-2.5">
+            Generate Appraisal Report (AWR) &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Saved Dossiers Table -->
+      <div class="nd-card bg-white overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+          <h2 class="text-sm font-bold text-slate-900">Your Saved Dossiers</h2>
+          <span id="dash-report-count" class="text-xs font-mono-num text-slate-500">0 reports</span>
+        </div>
+
+        <div id="dash-reports-empty" class="p-8 text-center">
+          <p class="text-sm text-slate-600 mb-1">No dashboard reports generated yet.</p>
+          <p class="text-xs text-slate-400">Your Premium PSWR and AWR dossiers will be saved here permanently for print and reference.</p>
+        </div>
+
+        <div id="dash-reports-table-wrap" class="hidden overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500">
+                <th class="py-3 px-6">Report Type</th>
+                <th class="py-3 px-4">Role &amp; City</th>
+                <th class="py-3 px-4">Date</th>
+                <th class="py-3 px-6 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="dash-reports-body" class="divide-y divide-slate-100"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/assets/js/supabase-client.js"></script>
+  <script>
+    (async function () {
+      // Mobile sidebar toggle
+      const toggleBtn = document.getElementById('nd-side-toggle');
+      const sideNav = document.getElementById('nd-side-nav');
+      if (toggleBtn && sideNav) {
+        toggleBtn.addEventListener('click', () => sideNav.classList.toggle('hidden'));
+      }
+
+      // Enforce authentication
+      const auth = await window.ndRequireAuth('professional');
+      if (!auth) return;
+
+      const { session, profile } = auth;
+      const fullName = (profile && profile.full_name) || session.user.email.split('@')[0];
+      const firstName = fullName.split(' ')[0];
+
+      document.getElementById('dash-first-name').textContent = firstName;
+      document.getElementById('side-user-name').textContent = fullName;
+      document.getElementById('side-user-email').textContent = session.user.email;
+      document.getElementById('dash-credits').textContent = (profile && profile.report_credits) || 0;
+      document.getElementById('dash-ref-code').textContent = (profile && profile.referral_code) || '—';
+
+      // Load saved dashboard reports
+      const { data: reports } = await window.ndSupabase
+        .from('dashboard_reports')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (reports && reports.length > 0) {
+        document.getElementById('dash-report-count').textContent = `${reports.length} report${reports.length > 1 ? 's' : ''}`;
+        document.getElementById('dash-reports-empty').classList.add('hidden');
+        document.getElementById('dash-reports-table-wrap').classList.remove('hidden');
+
+        const tbody = document.getElementById('dash-reports-body');
+        tbody.innerHTML = reports.map(r => {
+          const inp = r.input_payload || {};
+          const typeLabel = r.report_type === 'awr' ? 'Appraisal Worthiness (AWR)' : 'Premium PSWR';
+          const dateStr = new Date(r.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+          return `
+            <tr>
+              <td class="py-3.5 px-6 font-semibold text-slate-900">${typeLabel}</td>
+              <td class="py-3.5 px-4 text-slate-600">${inp.role_title || '—'} &middot; ${inp.city || '—'}</td>
+              <td class="py-3.5 px-4 font-mono-num text-xs text-slate-500">${dateStr}</td>
+              <td class="py-3.5 px-6 text-right">
+                <a href="/report-view.html?id=${r.id}" class="text-xs font-semibold text-teal-700 hover:underline">View / Print &rarr;</a>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // Reveal dashboard
+      document.getElementById('nd-auth-loader').classList.add('hidden');
+    })();
+  </script>
+</body>
+</html>
