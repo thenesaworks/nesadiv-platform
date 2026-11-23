@@ -1,0 +1,25 @@
+{
+  "name": "NesaDiv — Compensation Intelligence",
+  "short_name": "NesaDiv",
+  "description": "India's institutional salary intelligence platform. Decode Indian CTC structures, generate Pro Se PSWRs, and benchmark live compensation bands.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFFFFF",
+  "theme_color": "#2563EB",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
