@@ -3,6 +3,10 @@
    Palette: Royal Blue (#2563EB), Deep Cobalt (#0B3D91), Cyan Core (#59C3DB)
    ========================================================================== */
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 :root {
   /* Pure White & Crisp Surfaces */
   --nd-bg-white: #FFFFFF;
@@ -54,7 +58,7 @@
   --nd-rose-50: #FFF1F2;
   --nd-rose-border: #FECDD3;
 
-  /* Legacy Alias Tokens (keeps existing pages consistent) */
+  /* Legacy Alias Tokens */
   --nd-ink: var(--nd-ink-900);
   --nd-ink-muted: var(--nd-ink-600);
   --nd-bg: var(--nd-bg-white);
@@ -67,14 +71,14 @@
 
   /* Font Families */
   --nd-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --nd-font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --nd-font-display: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --nd-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Header Dimensions */
   --nd-ribbon-h: 32px;
   --nd-nav-h: 60px;
   --nd-header-total: 92px;
-  --nd-container-w: 1380px;
+  --nd-container-w: 1360px;
 
   /* Transitions & Shadows */
   --nd-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -85,7 +89,7 @@
 }
 
 /* ==========================================================================
-   BASE & UTILITY CLASSES
+   BASE, ANTI-FOUT & UTILITY CLASSES
    ========================================================================== */
 html {
   scroll-behavior: smooth;
@@ -94,15 +98,45 @@ html {
   background-color: var(--nd-bg-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: clip;
 }
 
 body.nd-has-header {
   padding-top: var(--nd-header-total);
-  overflow-x: hidden;
 }
 
 body.nd-menu-locked {
   overflow: hidden !important;
+}
+
+/* Smooth page swap transition */
+#nd-main-content {
+  transition: opacity 0.14s ease;
+}
+#nd-main-content.nd-is-loading {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Top Route Progress Bar */
+#nd-route-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--nd-cyan-500), var(--nd-blue-600));
+  z-index: 9999;
+  opacity: 0;
+  transition: width 0.25s ease, opacity 0.2s ease;
+  pointer-events: none;
 }
 
 .font-mono-num {
@@ -171,6 +205,7 @@ body.nd-menu-locked {
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
   height: var(--nd-ribbon-h);
   background-color: var(--nd-bg-subtle);
   border-bottom: 1px solid var(--nd-border-light);
@@ -331,6 +366,7 @@ body.nd-menu-locked {
   top: var(--nd-ribbon-h);
   left: 0;
   right: 0;
+  width: 100%;
   height: var(--nd-nav-h);
   background-color: var(--nd-bg-glass);
   backdrop-filter: blur(12px);
@@ -354,7 +390,6 @@ body.nd-menu-locked {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  overflow: hidden;
 }
 
 .nd-brand-wrap {
@@ -414,6 +449,7 @@ body.nd-menu-locked {
   align-items: center;
   gap: 2px;
   min-width: 0;
+  flex-shrink: 1;
 }
 
 .nd-nav-item {
@@ -421,7 +457,7 @@ body.nd-menu-locked {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 6px 9px;
+  padding: 6px 8px;
   font-family: var(--nd-font-sans);
   font-size: 12px;
   font-weight: 500;
@@ -506,7 +542,7 @@ body.nd-menu-locked {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 6px 10px;
+  padding: 6px 9px;
   font-size: 11.5px;
   font-weight: 600;
   color: var(--nd-ink-700);
@@ -525,9 +561,9 @@ body.nd-menu-locked {
 .nd-pswr-cta {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   height: 32px;
-  padding: 0 11px;
+  padding: 0 10px;
   font-size: 11.5px;
   font-weight: 600;
   color: #FFFFFF;
@@ -569,6 +605,7 @@ body.nd-menu-locked {
   font-weight: 600;
   cursor: pointer;
   flex-shrink: 0;
+  white-space: nowrap;
   transition: all 0.15s ease;
 }
 .nd-menu-trigger-btn:hover {
@@ -1224,20 +1261,16 @@ body.nd-menu-locked {
 }
 
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS (FIXES DESKTOP HAMBURGER OVERFLOW COMPLETELY)
+   RESPONSIVE BREAKPOINTS (ZERO DESKTOP CLIPPING AT ANY WIDTH)
    ========================================================================== */
-@media (max-width: 1360px) {
+@media (max-width: 1420px) {
   .nd-lateral-tag,
   .nd-v-divider {
     display: none;
   }
-  .nd-nav-item {
-    padding: 6px 8px;
-    font-size: 11.5px;
-  }
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1260px) {
   .nd-primary-nav {
     display: none;
   }
