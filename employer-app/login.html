@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-IN" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Employer Portal Login | NesaDiv for Employers</title>
+  <meta name="description" content="Sign in or register your HR workspace on NesaDiv for Employers to access Live Salary Bands, Honest CTC Offer Studio, and CSV Pay Equity Audits." />
+  <meta name="theme-color" content="#2563EB" />
+  <link rel="canonical" href="https://www.nesadiv.com/employer-app/login.html" />
+
+  <!-- PWA Manifest & Brand Icons -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <!-- Typography, Tailwind & Supabase CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
+
+  <!-- Global Master Header -->
+  <div id="nd-header"></div>
+
+  <main id="nd-main-content" class="flex-1 flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-md nd-card p-7 sm:p-9 bg-white">
+      <div class="mb-6">
+        <span class="inline-block text-[11px] font-mono-num font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-slate-900 text-white mb-3">
+          Employer &amp; HR Portal
+        </span>
+        <h1 id="auth-title" class="font-display text-2xl font-extrabold tracking-tight text-slate-950">Employer Sign In</h1>
+        <p id="auth-subtitle" class="text-xs text-slate-500 mt-1">
+          Access Live Q4 2026 Salary Bands, Honest CTC Offer Studio, and CSV Pay Equity Audits.
+        </p>
+      </div>
+
+      <!-- Mode Switch Tabs -->
+      <div class="grid grid-cols-2 gap-1 p-1 bg-slate-100 rounded-lg mb-6 text-xs font-semibold">
+        <button id="tab-login" type="button" class="py-2 rounded-md bg-white text-slate-950 shadow-sm transition">
+          Sign In
+        </button>
+        <button id="tab-signup" type="button" class="py-2 rounded-md text-slate-600 hover:text-slate-950 transition">
+          Register Company
+        </button>
+      </div>
+
+      <!-- Auth Form -->
+      <form id="nd-emp-auth-form" class="space-y-4">
+        <div id="field-company" class="hidden space-y-4">
+          <div>
+            <label for="company_name" class="block text-xs font-semibold text-slate-700 mb-1.5">Company / Organization Name</label>
+            <input type="text" id="company_name" placeholder="e.g. FinStack Technologies Pvt Ltd"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
+          </div>
+          <div>
+            <label for="full_name" class="block text-xs font-semibold text-slate-700 mb-1.5">Your Name (HR / Founder / Talent Lead)</label>
+            <input type="text" id="full_name" placeholder="e.g. Priya Menon"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-xs font-semibold text-slate-700 mb-1.5">Work Email Address</label>
+          <input type="email" id="email" required placeholder="hr@yourcompany.com"
+            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
+        </div>
+
+        <div>
+          <label for="password" class="block text-xs font-semibold text-slate-700 mb-1.5">Password</label>
+          <input type="password" id="password" required minlength="6" placeholder="Minimum 6 characters"
+            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
+        </div>
+
+        <!-- Status Message -->
+        <div id="auth-status" class="hidden p-3 rounded-lg text-xs font-medium"></div>
+
+        <button id="auth-submit-btn" type="submit" class="w-full nd-btn-primary py-3 text-sm">
+          Sign In to Employer Portal
+        </button>
+      </form>
+
+      <div class="mt-6 pt-5 border-t border-slate-100 text-center space-y-2 text-xs text-slate-500">
+        <p>Looking for your personal salary benchmark? <a href="/dashboard/login.html" class="font-semibold text-blue-600 hover:underline">Member Dashboard Login &rarr;</a></p>
+        <p>Need custom enterprise onboarding? <a href="/contact.html" class="font-semibold text-slate-800 hover:underline">Contact Enterprise Desk</a></p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <div id="nd-footer"></div>
+
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script>
+    (function () {
+      let mode = 'login';
+
+      const tabLogin = document.getElementById('tab-login');
+      const tabSignup = document.getElementById('tab-signup');
+      const fieldCompany = document.getElementById('field-company');
+      const companyInput = document.getElementById('company_name');
+      const fullNameInput = document.getElementById('full_name');
+      const authTitle = document.getElementById('auth-title');
+      const submitBtn = document.getElementById('auth-submit-btn');
+      const statusBox = document.getElementById('auth-status');
+      const form = document.getElementById('nd-emp-auth-form');
+
+      function setStatus(msg, isError = false) {
+        statusBox.textContent = msg;
+        statusBox.className = isError
+          ? 'p-3 rounded-lg text-xs font-medium bg-rose-50 border border-rose-200 text-rose-800'
+          : 'p-3 rounded-lg text-xs font-medium bg-blue-50 border border-blue-200 text-blue-900';
+      }
+
+      function switchMode(newMode) {
+        mode = newMode;
+        statusBox.classList.add('hidden');
+        if (mode === 'signup') {
+          tabSignup.className = 'py-2 rounded-md bg-white text-slate-950 shadow-sm transition';
+          tabLogin.className = 'py-2 rounded-md text-slate-600 hover:text-slate-950 transition';
+          fieldCompany.classList.remove('hidden');
+          companyInput.required = true;
+          fullNameInput.required = true;
+          authTitle.textContent = 'Create Employer Workspace';
+          submitBtn.textContent = 'Register Company Workspace';
+        } else {
+          tabLogin.className = 'py-2 rounded-md bg-white text-slate-950 shadow-sm transition';
+          tabSignup.className = 'py-2 rounded-md text-slate-600 hover:text-slate-950 transition';
+          fieldCompany.classList.add('hidden');
+          companyInput.required = false;
+          fullNameInput.required = false;
+          authTitle.textContent = 'Employer Sign In';
+          submitBtn.textContent = 'Sign In to Employer Portal';
+        }
+      }
+
+      tabLogin.addEventListener('click', () => switchMode('login'));
+      tabSignup.addEventListener('click', () => switchMode('signup'));
+
+      if (window.ndSupabase) {
+        window.ndSupabase.auth.getSession().then(({ data: { session } }) => {
+          if (session) window.location.href = '/employer-app/index.html';
+        });
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!window.ndSupabase) {
+          setStatus('Supabase client not initialized. Check assets/js/supabase-client.js.', true);
+          return;
+        }
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const companyName = companyInput.value.trim();
+        const fullName = fullNameInput.value.trim();
+
+        submitBtn.disabled = true;
+        setStatus(mode === 'signup' ? 'Creating your company workspace...' : 'Signing in...');
+
+        try {
+          if (mode === 'signup') {
+            const { data, error } = await window.ndSupabase.auth.signUp({
+              email,
+              password,
+              options: {
+                data: {
+                  full_name: fullName,
+                  company_name: companyName,
+                  account_type: 'employer'
+                }
+              }
+            });
+            if (error) throw error;
+
+            if (data.session) {
+              window.location.href = '/employer-app/index.html';
+            } else {
+              setStatus('Workspace created! Please check your work email to confirm your address, then sign in.', false);
+            }
+          } else {
+            const { error } = await window.ndSupabase.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+            window.location.href = '/employer-app/index.html';
+          }
+        } catch (err) {
+          setStatus(err.message || 'Authentication failed.', true);
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
