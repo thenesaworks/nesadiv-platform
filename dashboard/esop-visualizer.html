@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-IN" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>ESOP &amp; Equity Visualizer | NesaDiv Member Dashboard</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#2563EB" />
+
+  <!-- PWA Manifest & Brand Icons -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <!-- Typography, Tailwind & Supabase -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+  <!-- Auth Loading Overlay -->
+  <div id="nd-auth-loader" class="fixed inset-0 z-50 bg-white flex items-center justify-center">
+    <div class="text-center">
+      <img src="/logo.png" alt="NesaDiv Logo" class="w-10 h-10 object-contain mx-auto mb-3" onerror="this.style.display='none'" />
+      <p class="text-xs font-medium text-slate-500">Verifying secure session...</p>
+    </div>
+  </div>
+
+  <div class="min-h-screen flex flex-col lg:flex-row">
+
+    <!-- Sidebar -->
+    <aside id="nd-dashboard-sidebar" class="w-full lg:w-64 bg-slate-950 text-slate-300 flex flex-col shrink-0">
+      <div class="h-16 px-5 flex items-center justify-between border-b border-slate-800">
+        <a href="/index.html" class="flex items-center gap-2.5">
+          <img src="/logo.png" alt="NesaDiv Logo" class="w-7 h-7 object-contain" onerror="this.style.display='none'" />
+          <span class="font-display text-white font-extrabold tracking-tight text-base">NESA<span style="color:#6C8EE8;">DIV</span></span>
+        </a>
+        <button id="nd-side-toggle" type="button" class="lg:hidden text-slate-400 hover:text-white p-1" aria-label="Toggle Sidebar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="nd-side-nav" class="hidden lg:flex flex-col flex-1 justify-between p-4">
+        <nav class="space-y-1 text-sm font-medium">
+          <p class="px-3 pt-1 pb-2 text-[10px] font-mono-num font-semibold uppercase tracking-widest text-slate-500">Intelligence Suite</p>
+          <a href="/dashboard/index.html" class="block px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition">
+            Overview
+          </a>
+          <a href="/dashboard/premium-pswr.html" class="block px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition">
+            Premium PSWR
+          </a>
+          <a href="/dashboard/awr.html" class="block px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition">
+            Appraisal Report (AWR)
+          </a>
+          <a href="/dashboard/esop-visualizer.html" class="block px-3 py-2.5 rounded-lg bg-blue-600/20 text-white border border-blue-500/30">
+            ESOP Visualizer
+          </a>
+          <a href="/dashboard/sponsor.html" class="block px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition">
+            Sponsor / Gift Report
+          </a>
+
+          <p class="px-3 pt-5 pb-2 text-[10px] font-mono-num font-semibold uppercase tracking-widest text-slate-500">Quick Tools</p>
+          <a href="/ctc-decompiler.html" class="block px-3 py-2 rounded-lg text-xs text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            CTC Decompiler &rarr;
+          </a>
+          <a href="/index.html" class="block px-3 py-2 rounded-lg text-xs text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            Public Website &rarr;
+          </a>
+        </nav>
+
+        <div class="pt-4 mt-6 border-t border-slate-800">
+          <div class="px-3 mb-3">
+            <p id="side-user-name" class="text-xs font-semibold text-white truncate">—</p>
+            <p id="side-user-email" class="text-[11px] text-slate-500 truncate">—</p>
+          </div>
+          <button onclick="window.ndLogout('/dashboard/login.html')" type="button"
+            class="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-rose-400 hover:bg-rose-950/50 hover:text-rose-300 transition">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 p-5 sm:p-8 lg:p-10 max-w-6xl">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 mb-8">
+        <div>
+          <p class="font-mono-num text-[11px] font-bold uppercase tracking-widest text-indigo-600 mb-1">Member Tool &middot; Included Free</p>
+          <h1 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950">
+            ESOP &amp; Equity Visualizer
+          </h1>
+        </div>
+        <button id="esop-reset-btn" type="button" class="text-xs font-semibold text-blue-600 hover:underline self-start sm:self-auto">
+          Reset to ₹12L Sample Grant
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left: Grant Parameters -->
+        <div class="lg:col-span-5 nd-card p-6 bg-white space-y-5">
+          <h2 class="font-display text-sm font-bold text-slate-950 pb-3 border-b border-slate-100">Grant Parameters</h2>
+
+          <div>
+            <label for="esop_grant" class="block text-xs font-semibold text-slate-700 mb-1.5">Total 4-Year ESOP Grant Value (₹)</label>
+            <input type="number" id="esop_grant" value="1200000" min="0" step="50000"
+              class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg font-mono-num text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            <p class="text-[11px] text-slate-400 mt-1">Total grant value printed in your offer letter (usually spread over 4 years).</p>
+          </div>
+
+          <div>
+            <label for="vesting_schedule" class="block text-xs font-semibold text-slate-700 mb-1.5">Vesting Schedule (1-Year Cliff)</label>
+            <select id="vesting_schedule" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="25,25,25,25" selected>Standard Linear (25% / 25% / 25% / 25%)</option>
+              <option value="10,20,30,40">Back-Loaded (10% / 20% / 30% / 40%)</option>
+              <option value="15,25,30,30">Moderate Back-Loaded (15% / 25% / 30% / 30%)</option>
+              <option value="40,30,20,10">Front-Loaded (40% / 30% / 20% / 10%)</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="strike_pct" class="block text-xs font-semibold text-slate-700 mb-1.5">Strike Price (% of Grant)</label>
+              <input type="number" id="strike_pct" value="10" min="0" max="100" step="1"
+                class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            </div>
+            <div>
+              <label for="tax_pct" class="block text-xs font-semibold text-slate-700 mb-1.5">Est. Tax Rate (%)</label>
+              <input type="number" id="tax_pct" value="30" min="0" max="42" step="1"
+                class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-sm focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-900 leading-relaxed">
+            <strong>Liquidity Check:</strong> Private startup ESOPs are illiquid until a buyback, secondary sale, or IPO. Always verify your <strong>Post-Termination Exercise Window (PTEW)</strong> before trading fixed salary for equity.
+          </div>
+        </div>
+
+        <!-- Right: Vesting & Exit Scenario Outputs -->
+        <div class="lg:col-span-7 space-y-6">
+
+          <!-- Summary Strip -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="nd-card p-5 bg-white">
+              <span class="block text-[10px] font-mono-num uppercase tracking-wider text-slate-400">Year 1 Cliff Vest</span>
+              <div id="out-y1-vest" class="text-xl font-bold font-mono-num text-slate-950 mt-1">₹0</div>
+            </div>
+            <div class="nd-card p-5 bg-white">
+              <span class="block text-[10px] font-mono-num uppercase tracking-wider text-slate-400">4-Yr Exercise Cost</span>
+              <div id="out-strike-cost" class="text-xl font-bold font-mono-num text-rose-700 mt-1">₹0</div>
+            </div>
+            <div class="nd-card p-5 text-white border-slate-900" style="background: linear-gradient(135deg, #020617 0%, #0B3D91 100%);">
+              <span class="block text-[10px] font-mono-num uppercase tracking-wider" style="color:#59C3DB;">Net at 2x Exit (Post-Tax)</span>
+              <div id="out-2x-net" class="text-xl font-bold font-mono-num text-white mt-1">₹0</div>
+            </div>
+          </div>
+
+          <!-- 4-Year Vesting Table -->
+          <div class="nd-card bg-white overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-200">
+              <h3 class="font-display text-sm font-bold text-slate-950">4-Year Vesting Schedule (At 1x Grant Value)</h3>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-slate-50 border-b border-slate-200 font-mono-num uppercase text-slate-500">
+                    <th class="py-2.5 px-6">Milestone</th>
+                    <th class="py-2.5 px-4 text-right">Vest %</th>
+                    <th class="py-2.5 px-4 text-right">Annual Vested</th>
+                    <th class="py-2.5 px-6 text-right">Cumulative Vested</th>
+                  </tr>
+                </thead>
+                <tbody id="vesting-tbody" class="divide-y divide-slate-100"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Exit Multiplier Scenarios -->
+          <div class="nd-card bg-white overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-200">
+              <h3 class="font-display text-sm font-bold text-slate-950">Full 4-Year Exit Valuation Scenarios</h3>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-slate-50 border-b border-slate-200 font-mono-num uppercase text-slate-500">
+                    <th class="py-2.5 px-6">Exit Scenario</th>
+                    <th class="py-2.5 px-4 text-right">Gross Value</th>
+                    <th class="py-2.5 px-4 text-right">Pre-Tax Gain</th>
+                    <th class="py-2.5 px-6 text-right">Est. Post-Tax Net</th>
+                  </tr>
+                </thead>
+                <tbody id="exit-tbody" class="divide-y divide-slate-100"></tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="/assets/js/supabase-client.js"></script>
+  <script>
+    (async function () {
+      const toggleBtn = document.getElementById('nd-side-toggle');
+      const sideNav = document.getElementById('nd-side-nav');
+      if (toggleBtn && sideNav) toggleBtn.addEventListener('click', () => sideNav.classList.toggle('hidden'));
+
+      const auth = await window.ndRequireAuth('professional');
+      if (!auth) return;
+
+      const { session, profile } = auth;
+      const fullName = (profile && profile.full_name) || session.user.email.split('@')[0];
+      document.getElementById('side-user-name').textContent = fullName;
+      document.getElementById('side-user-email').textContent = session.user.email;
+
+      function fmtINR(num) {
+        return '₹' + Math.round(num).toLocaleString('en-IN');
+      }
+
+      function computeESOP() {
+        const grant = Math.max(0, Number(document.getElementById('esop_grant').value) || 0);
+        const schedule = document.getElementById('vesting_schedule').value.split(',').map(Number);
+        const strikePct = Math.max(0, Math.min(100, Number(document.getElementById('strike_pct').value) || 0));
+        const taxPct = Math.max(0, Math.min(50, Number(document.getElementById('tax_pct').value) || 0));
+
+        const strikeCost = grant * (strikePct / 100);
+        document.getElementById('out-y1-vest').textContent = fmtINR(grant * (schedule[0] / 100));
+        document.getElementById('out-strike-cost').textContent = fmtINR(strikeCost);
+
+        // Vesting rows
+        let cumulative = 0;
+        const vestingBody = document.getElementById('vesting-tbody');
+        vestingBody.innerHTML = schedule.map((pct, idx) => {
+          const yrVal = grant * (pct / 100);
+          cumulative += yrVal;
+          const label = idx === 0 ? 'Year 1 (1-Yr Cliff)' : `Year ${idx + 1}`;
+          return `
+            <tr>
+              <td class="py-3 px-6 font-semibold text-slate-900">${label}</td>
+              <td class="py-3 px-4 text-right font-mono-num text-slate-600">${pct}%</td>
+              <td class="py-3 px-4 text-right font-mono-num text-slate-900">${fmtINR(yrVal)}</td>
+              <td class="py-3 px-6 text-right font-mono-num font-bold text-blue-700">${fmtINR(cumulative)}</td>
+            </tr>
+          `;
+        }).join('');
+
+        // Exit scenarios
+        const scenarios = [
+          { label: '0x (No Liquidity / Down-Round)', mult: 0 },
+          { label: '1x (Flat Buyback / Par Value)', mult: 1 },
+          { label: '2x (Healthy Growth Exit)', mult: 2 },
+          { label: '5x (Breakout Series-C/D)', mult: 5 },
+          { label: '10x (Unicorn / IPO Outcome)', mult: 10 }
+        ];
+
+        const exitBody = document.getElementById('exit-tbody');
+        exitBody.innerHTML = scenarios.map(s => {
+          const gross = grant * s.mult;
+          const gain = Math.max(0, gross - strikeCost);
+          const net = gain * (1 - taxPct / 100);
+          if (s.mult === 2) {
+            document.getElementById('out-2x-net').textContent = fmtINR(net);
+          }
+          const highlight = s.mult === 2 ? 'bg-blue-50/50' : '';
+          return `
+            <tr class="${highlight}">
+              <td class="py-3 px-6 font-semibold text-slate-900">${s.label}</td>
+              <td class="py-3 px-4 text-right font-mono-num text-slate-600">${fmtINR(gross)}</td>
+              <td class="py-3 px-4 text-right font-mono-num text-slate-800">${fmtINR(gain)}</td>
+              <td class="py-3 px-6 text-right font-mono-num font-bold ${s.mult === 0 ? 'text-rose-600' : 'text-emerald-700'}">${fmtINR(net)}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      ['esop_grant', 'vesting_schedule', 'strike_pct', 'tax_pct'].forEach(id => {
+        document.getElementById(id).addEventListener('input', computeESOP);
+        document.getElementById(id).addEventListener('change', computeESOP);
+      });
+
+      document.getElementById('esop-reset-btn').addEventListener('click', () => {
+        document.getElementById('esop_grant').value = 1200000;
+        document.getElementById('vesting_schedule').value = '25,25,25,25';
+        document.getElementById('strike_pct').value = 10;
+        document.getElementById('tax_pct').value = 30;
+        computeESOP();
+      });
+
+      computeESOP();
+      document.getElementById('nd-auth-loader').classList.add('hidden');
+    })();
+  </script>
+</body>
+</html>
