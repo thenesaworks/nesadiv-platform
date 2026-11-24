@@ -1,11 +1,12 @@
 /* ==========================================================================
-   NESADIV — MASTER HEADER, 3-COLUMN MEGA MENU, PWA INSTALL & FOOTER
+   NESADIV — MASTER HEADER, 3-COLUMN MEGA MENU, ZERO-RELOAD ROUTER & PWA
    ========================================================================== */
 
 (function () {
   'use strict';
 
   const headerHTML = `
+    <div id="nd-route-progress" class="no-print"></div>
     <a href="#nd-main-content" class="nd-skip-nav">Skip to main content</a>
 
     <!-- 1. TOP MARKET PULSE RIBBON -->
@@ -87,8 +88,8 @@
 
         <!-- Left: Brand Logo & Experience Gate Badge -->
         <div class="nd-brand-wrap">
-          <a href="/index.html" class="nd-logo-anchor" aria-label="NesaDiv Home">
-            <img src="/logo.png" alt="NesaDiv Logo" onerror="this.style.display='none'">
+          <a href="/" class="nd-logo-anchor" aria-label="NesaDiv Home">
+            <img src="/logo.png" alt="NesaDiv Logo" width="28" height="28" onerror="this.style.display='none'">
             <span class="nd-logo-text">NESA<span>DIV</span></span>
           </a>
           <span class="nd-v-divider"></span>
@@ -126,7 +127,7 @@
             <span>Install App</span>
           </button>
 
-          <a href="/dashboard/login.html" class="nd-vault-link">Member Dashboard</a>
+          <a href="/dashboard/login.html" class="nd-vault-link" data-no-pjax="true">Member Dashboard</a>
 
           <a href="/salary-dossier.html" class="nd-pswr-cta">
             <span class="nd-cta-full">Get Pro Se PSWR</span>
@@ -159,7 +160,7 @@
           </div>
           <div class="nd-utility-QuickLinks">
             <a href="/salary-dossier.html">Pro Se PSWR (₹299) &rarr;</a>
-            <a href="/dashboard/login.html">Member Dashboard &rarr;</a>
+            <a href="/dashboard/login.html" data-no-pjax="true">Member Dashboard &rarr;</a>
             <a href="/employers.html">Employer Suite &rarr;</a>
           </div>
         </div>
@@ -230,7 +231,6 @@
             </div>
           </div>
 
-          <!-- Sister Brand Callout (0–6 Months Experience) -->
           <div class="nd-competence-box">
             <span class="nd-competence-eyebrow">Sister Brand &bull; 0–6 Months Exp</span>
             <h5>Competence.co.in</h5>
@@ -270,7 +270,7 @@
                 </div>
               </a>
 
-              <a href="/dashboard/login.html" class="nd-nav-card" data-keywords="premium pswr member dashboard job switch dossier">
+              <a href="/dashboard/login.html" data-no-pjax="true" class="nd-nav-card" data-keywords="premium pswr member dashboard job switch dossier">
                 <div class="nd-card-icon indigo">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 </div>
@@ -284,7 +284,7 @@
                 </div>
               </a>
 
-              <a href="/dashboard/login.html" class="nd-nav-card" data-keywords="awr appraisal worthiness report internal raise promotion">
+              <a href="/dashboard/login.html" data-no-pjax="true" class="nd-nav-card" data-keywords="awr appraisal worthiness report internal raise promotion">
                 <div class="nd-card-icon emerald">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                 </div>
@@ -340,7 +340,7 @@
                 </div>
               </a>
 
-              <a href="/dashboard/login.html" class="nd-nav-card" data-keywords="esop equity visualizer strike price vesting cliff exit liquidity">
+              <a href="/dashboard/login.html" data-no-pjax="true" class="nd-nav-card" data-keywords="esop equity visualizer strike price vesting cliff exit liquidity">
                 <div class="nd-card-icon indigo">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                 </div>
@@ -354,7 +354,7 @@
                 </div>
               </a>
 
-              <a href="/dashboard/login.html" class="nd-nav-card" data-keywords="sponsor gift report voucher colleague friend">
+              <a href="/dashboard/login.html" data-no-pjax="true" class="nd-nav-card" data-keywords="sponsor gift report voucher colleague friend">
                 <div class="nd-card-icon rose">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/></svg>
                 </div>
@@ -479,7 +479,7 @@
                 </div>
               </a>
 
-              <a href="/dashboard/login.html" class="nd-nav-card" data-keywords="member dashboard login premium pswr awr appraisal">
+              <a href="/dashboard/login.html" data-no-pjax="true" class="nd-nav-card" data-keywords="member dashboard login premium pswr awr appraisal">
                 <div class="nd-card-icon emerald">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
                 </div>
@@ -576,7 +576,7 @@
                 </div>
               </a>
 
-              <a href="/employer-app/login.html" class="nd-nav-card" data-keywords="employer portal login hr dashboard">
+              <a href="/employer-app/login.html" data-no-pjax="true" class="nd-nav-card" data-keywords="employer portal login hr dashboard">
                 <div class="nd-card-icon blue">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
                 </div>
@@ -694,7 +694,6 @@
         <!-- COLUMN 3: RIGHT CONTEXTUAL SIDEBAR -->
         <div class="nd-col-right">
 
-          <!-- Right Context 01: Products -->
           <div class="nd-right-pane is-active" id="ctx-pane-products">
             <div class="nd-right-heading">
               <span>Report Comparison</span>
@@ -727,7 +726,6 @@
             </a>
           </div>
 
-          <!-- Right Context 02: Solutions -->
           <div class="nd-right-pane" id="ctx-pane-solutions">
             <div class="nd-right-heading">
               <span>Featured Case Study</span>
@@ -747,7 +745,6 @@
             </a>
           </div>
 
-          <!-- Right Context 03: For Professionals -->
           <div class="nd-right-pane" id="ctx-pane-professionals">
             <div class="nd-right-heading">
               <span>Professional Insights</span>
@@ -767,7 +764,6 @@
             </a>
           </div>
 
-          <!-- Right Context 04: For Employers -->
           <div class="nd-right-pane" id="ctx-pane-employers">
             <div class="nd-right-heading">
               <span>Employer Case Study</span>
@@ -787,7 +783,6 @@
             </a>
           </div>
 
-          <!-- Right Context 05: Company -->
           <div class="nd-right-pane" id="ctx-pane-company">
             <div class="nd-right-heading">
               <span>Institutional Standard</span>
@@ -846,10 +841,9 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
 
-          <!-- Brand Col -->
           <div class="md:col-span-1">
             <div class="flex items-center gap-2.5 mb-3">
-              <img src="/logo.png" alt="NesaDiv Logo" class="w-7 h-7 object-contain" onerror="this.style.display='none'">
+              <img src="/logo.png" alt="NesaDiv Logo" width="28" height="28" class="w-7 h-7 object-contain" onerror="this.style.display='none'">
               <span class="text-white font-display font-bold tracking-tight text-base">NESA<span style="color:#6C8EE8;">DIV</span></span>
             </div>
             <p class="text-xs leading-relaxed text-slate-400 mb-4">
@@ -858,30 +852,27 @@
             <p class="text-xs text-slate-500">Bengaluru, Karnataka, India</p>
           </div>
 
-          <!-- Professionals -->
           <div>
             <h4 class="text-xs font-semibold uppercase tracking-wider text-white mb-3">Professionals</h4>
             <ul class="space-y-2 text-xs">
               <li><a href="/ctc-decompiler.html" class="hover:text-white transition">Forensic CTC Decompiler (Free)</a></li>
               <li><a href="/salary-dossier.html" class="hover:text-white transition">Pro Se PSWR (₹299)</a></li>
-              <li><a href="/dashboard/login.html" class="hover:text-white transition">Premium PSWR &amp; AWR Dashboard</a></li>
+              <li><a href="/dashboard/login.html" data-no-pjax="true" class="hover:text-white transition">Premium PSWR &amp; AWR Dashboard</a></li>
               <li><a href="https://www.competence.co.in" target="_blank" rel="noopener" class="text-blue-400 hover:text-white transition">Freshers (&lt;6m) &rarr; Competence.co.in</a></li>
             </ul>
           </div>
 
-          <!-- Employers & Research -->
           <div>
             <h4 class="text-xs font-semibold uppercase tracking-wider text-white mb-3">Employers &amp; Research</h4>
             <ul class="space-y-2 text-xs">
               <li><a href="/employers.html" class="hover:text-white transition">Employer Suite Overview</a></li>
-              <li><a href="/employer-app/login.html" class="hover:text-white transition">Employer Portal Login</a></li>
+              <li><a href="/employer-app/login.html" data-no-pjax="true" class="hover:text-white transition">Employer Portal Login</a></li>
               <li><a href="/methodology.html" class="hover:text-white transition">Forensic Methodology</a></li>
               <li><a href="/case-studies.html" class="hover:text-white transition">Verified Case Studies</a></li>
               <li><a href="/market-pulse.html" class="hover:text-white transition">Market Pulse</a></li>
             </ul>
           </div>
 
-          <!-- Company & Legal -->
           <div>
             <h4 class="text-xs font-semibold uppercase tracking-wider text-white mb-3">Company &amp; Legal</h4>
             <ul class="space-y-2 text-xs">
@@ -902,7 +893,7 @@
     </footer>
   `;
 
-  // Register Service Worker for Automatic App Install (PWA)
+  // Register Service Worker for PWA
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js').catch(() => {});
@@ -910,7 +901,6 @@
   }
 
   let deferredInstallPrompt = null;
-
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredInstallPrompt = e;
@@ -918,6 +908,130 @@
     if (installBtn) installBtn.classList.add('is-visible');
   });
 
+  // ========================================================================
+  // ZERO-RELOAD PJAX ROUTER (KEEPS HEADER & FOOTER FROZEN ACROSS PUBLIC PAGES)
+  // ========================================================================
+  let isNavigating = false;
+
+  function shouldInterceptLink(anchor) {
+    if (!anchor || !anchor.href) return false;
+    if (anchor.hasAttribute('data-no-pjax') || anchor.hasAttribute('download')) return false;
+    if (anchor.target && anchor.target !== '_self') return false;
+    const url = new URL(anchor.href, window.location.origin);
+    if (url.origin !== window.location.origin) return false;
+    // Let authenticated app shells load normally
+    if (url.pathname.startsWith('/dashboard/') || url.pathname.startsWith('/employer-app/')) return false;
+    // Same-page hash link
+    if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return false;
+    return true;
+  }
+
+  async function navigateWithoutHeaderReload(targetUrl, pushState = true) {
+    if (isNavigating) return;
+    const mainSlot = document.getElementById('nd-main-content');
+    if (!mainSlot) {
+      window.location.href = targetUrl;
+      return;
+    }
+
+    isNavigating = true;
+    const progress = document.getElementById('nd-route-progress');
+    if (progress) {
+      progress.style.opacity = '1';
+      progress.style.width = '65%';
+    }
+    mainSlot.classList.add('nd-is-loading');
+
+    try {
+      const response = await fetch(targetUrl, { headers: { 'X-Requested-With': 'NesaDiv-PJAX' } });
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const htmlText = await response.text();
+      const parsedDoc = new DOMParser().parseFromString(htmlText, 'text/html');
+      const newMain = parsedDoc.getElementById('nd-main-content');
+
+      if (!newMain) {
+        window.location.href = targetUrl;
+        return;
+      }
+
+      // Swap only <main> content
+      mainSlot.innerHTML = newMain.innerHTML;
+
+      // Update Title, Meta Description & Canonical
+      if (parsedDoc.title) document.title = parsedDoc.title;
+      const newDesc = parsedDoc.querySelector('meta[name="description"]');
+      const curDesc = document.querySelector('meta[name="description"]');
+      if (newDesc && curDesc) curDesc.setAttribute('content', newDesc.getAttribute('content') || '');
+
+      const newCanon = parsedDoc.querySelector('link[rel="canonical"]');
+      const curCanon = document.querySelector('link[rel="canonical"]');
+      if (newCanon && curCanon) curCanon.setAttribute('href', newCanon.getAttribute('href') || '');
+
+      if (pushState) {
+        window.history.pushState({ ndUrl: targetUrl }, '', targetUrl);
+      }
+
+      // Re-run page-specific scripts (skip layout.js)
+      const fetchedScripts = parsedDoc.querySelectorAll('body script');
+      for (const oldScript of fetchedScripts) {
+        const src = oldScript.getAttribute('src') || '';
+        if (src.includes('layout.js')) continue;
+        const newScript = document.createElement('script');
+        if (src) {
+          newScript.src = src;
+          newScript.async = false;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        mainSlot.appendChild(newScript);
+      }
+
+      // Close Mega Menu if open
+      if (typeof window.ndCloseMegaMenu === 'function') window.ndCloseMegaMenu();
+
+      // Scroll to hash or top
+      const parsedUrl = new URL(targetUrl, window.location.origin);
+      if (parsedUrl.hash) {
+        const hashEl = document.querySelector(parsedUrl.hash);
+        if (hashEl) {
+          hashEl.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    } catch (err) {
+      window.location.href = targetUrl;
+    } finally {
+      mainSlot.classList.remove('nd-is-loading');
+      if (progress) {
+        progress.style.width = '100%';
+        setTimeout(() => {
+          progress.style.opacity = '0';
+          progress.style.width = '0%';
+        }, 200);
+      }
+      isNavigating = false;
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    const anchor = e.target.closest('a');
+    if (shouldInterceptLink(anchor)) {
+      e.preventDefault();
+      navigateWithoutHeaderReload(anchor.href, true);
+    }
+  });
+
+  window.addEventListener('popstate', () => {
+    navigateWithoutHeaderReload(window.location.href, false);
+  });
+
+  // ========================================================================
+  // INITIALIZE HEADER, FOOTER & MEGA MENU
+  // ========================================================================
   document.addEventListener('DOMContentLoaded', () => {
     const headerSlot = document.getElementById('nd-header');
     const footerSlot = document.getElementById('nd-footer');
@@ -995,6 +1109,8 @@
         }
       }
     }
+
+    window.ndCloseMegaMenu = () => toggleFullMenu(false);
 
     function switchPillar(targetPaneId) {
       pillarTabs.forEach(tab => {
