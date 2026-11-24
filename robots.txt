@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /employer-app/
+Disallow: /report-view.html
+Disallow: /api/
+
+Sitemap: https://www.nesadiv.com/sitemap.xml
