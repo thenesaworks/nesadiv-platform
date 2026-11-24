@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-IN" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Forensic Methodology &amp; Data Integrity | NesaDiv</title>
+  <meta name="description" content="How NesaDiv calibrates Q4 2026 Indian salary percentiles (P25–P90), isolates Phantom CTC, computes deterministic 2026–27 New Tax Regime take-home pay, and enforces our Zero-BGV Policy." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#2563EB" />
+  <link rel="canonical" href="https://www.nesadiv.com/methodology.html" />
+
+  <!-- PWA Manifest & Brand Icons -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="NesaDiv" />
+  <meta property="og:title" content="Forensic Methodology &amp; Data Integrity | NesaDiv" />
+  <meta property="og:description" content="Deterministic Indian tax math, Q4 2026 verified percentile bands, and our strict Zero-BGV privacy standard." />
+  <meta property="og:url" content="https://www.nesadiv.com/methodology.html" />
+  <meta property="og:image" content="https://www.nesadiv.com/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Typography & Tailwind CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+
+  <!-- AEO / SEO Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "NesaDiv Forensic Methodology",
+        "url": "https://www.nesadiv.com/methodology.html",
+        "description": "Audit-grade methodology detailing how NesaDiv separates Fixed Gross from Phantom CTC, applies India's Tax Year 2026-27 New Tax Regime, and calibrates city and employer-tier salary percentiles."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does NesaDiv ever contact my current or former employers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. NesaDiv operates under a strict Zero-BGV Policy. We do not run background checks, call HR departments, or share your personal compensation inputs with any third party."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does NesaDiv benchmark Fixed Gross instead of Headline CTC?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Headline CTC in India frequently includes non-guaranteed variable bonuses, illiquid ESOPs, joining bonuses, employer PF, and gratuity. Benchmarking Fixed Gross ensures apples-to-apples comparisons of guaranteed annual cash."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+  <!-- Global Master Header -->
+  <div id="nd-header"></div>
+
+  <main id="nd-main-content">
+
+    <!-- Page Masthead -->
+    <section class="border-b border-slate-200 bg-slate-50/80">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-18">
+        <span class="inline-block font-mono-num text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded bg-blue-50 text-blue-900 border border-blue-200 mb-4">
+          DATA INTEGRITY &middot; AUDIT-GRADE PRECISION
+        </span>
+        <h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-950 mb-4">
+          The NesaDiv Forensic Methodology
+        </h1>
+        <p class="text-base text-slate-600 leading-relaxed max-w-3xl">
+          Most Indian salary portals rely on unverified, self-reported headline CTCs that mix guaranteed base pay with illiquid ESOPs and inflated bonuses. NesaDiv uses a deterministic, four-stage framework to isolate real cash value.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4-Stage Methodology Pillars -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-10">
+
+      <!-- Pillar 1 -->
+      <div class="nd-card p-7 sm:p-8 bg-white">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="font-mono-num text-xs font-bold px-2.5 py-1 rounded bg-blue-600 text-white">01</span>
+          <h2 class="font-display text-xl font-bold text-slate-950">Fixed Gross Isolation (Stripping Phantom CTC)</h2>
+        </div>
+        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+          Before benchmarking any offer or current salary, our engine strips away all non-monthly-cash and non-guaranteed components—collectively termed <strong>Phantom CTC</strong>:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700">
+          <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+            <strong class="block text-slate-950 mb-1">Variable &amp; Performance Pay</strong>
+            Discretionary or company-linked bonuses that are not guaranteed in monthly payroll.
+          </div>
+          <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+            <strong class="block text-slate-950 mb-1">ESOPs, RSUs &amp; Retention Bonuses</strong>
+            Multi-year vesting schedules, illiquid private equity, and one-time joining payouts.
+          </div>
+          <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+            <strong class="block text-slate-950 mb-1">Employer PF &amp; Gratuity</strong>
+            Statutory retiral contributions locked behind 5-year service rules or EPFO withdrawals.
+          </div>
+          <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+            <strong class="block text-slate-950 mb-1">Corporate Insurance &amp; Perks</strong>
+            Group health premiums and notional office benefits bundled into headline CTC.
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="nd-card p-7 sm:p-8 bg-white">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="font-mono-num text-xs font-bold px-2.5 py-1 rounded bg-blue-600 text-white">02</span>
+          <h2 class="font-display text-xl font-bold text-slate-950">Deterministic 2026–27 New Tax Regime Engine</h2>
+        </div>
+        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+          NesaDiv never uses AI to guess tax numbers. All monthly take-home calculations run through deterministic, rule-based arithmetic aligned with India's <strong>Tax Year 2026–27 New Tax Regime</strong>:
+        </p>
+        <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+          <li><strong>₹75,000 Standard Deduction</strong> applied automatically to Fixed Gross salary.</li>
+          <li><strong>Section 87A Rebate &amp; Marginal Relief:</strong> Nil income tax up to ₹12,00,000 taxable income, with exact marginal relief above the threshold.</li>
+          <li><strong>Statutory Surcharge &amp; 4% Cess:</strong> Progressive New Regime slabs (5% to 30%), surcharge capped at 25%, plus 4% Health &amp; Education Cess.</li>
+          <li><strong>Employee Deductions:</strong> Deducts Employee PF and applicable state Professional Tax to arrive at exact <strong>True Net Monthly In-Hand</strong>.</li>
+        </ul>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="nd-card p-7 sm:p-8 bg-white">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="font-mono-num text-xs font-bold px-2.5 py-1 rounded bg-blue-600 text-white">03</span>
+          <h2 class="font-display text-xl font-bold text-slate-950">3-Axis Market Calibration (Role &times; City &times; Employer Tier)</h2>
+        </div>
+        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+          A "Senior Software Engineer" in Bengaluru at a Series-B startup is paid differently from the same title in Pune at an IT Services firm. Every NesaDiv report benchmarks across three strict dimensions:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-lg bg-blue-50/50 border border-blue-200">
+            <span class="font-mono-num font-bold text-blue-700 block mb-1">AXIS 1: EMPLOYER TIER</span>
+            <p class="text-slate-700">Segmented into <strong>IT Services &amp; Consulting</strong>, <strong>Global Capability Centers (GCCs)</strong>, and <strong>High-Growth Startups &amp; Product</strong>.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-blue-50/50 border border-blue-200">
+            <span class="font-mono-num font-bold text-blue-700 block mb-1">AXIS 2: METRO INDEX</span>
+            <p class="text-slate-700">Calibrated across Bengaluru, Hyderabad, Pune, Mumbai, Delhi NCR, and Chennai with regional pay parity adjustments.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-blue-50/50 border border-blue-200">
+            <span class="font-mono-num font-bold text-blue-700 block mb-1">AXIS 3: PERCENTILES</span>
+            <p class="text-slate-700">Outputs exact <strong>P25</strong> (Entry), <strong>P50</strong> (Market Median), <strong>P75</strong> (Target Ask), and <strong>P90</strong> (Top Decile) bands.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 4: Zero-BGV Policy -->
+      <div class="nd-card p-7 sm:p-8 text-white border-slate-900" style="background: linear-gradient(135deg, #020617 0%, #0B3D91 100%);">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="font-mono-num text-xs font-bold px-2.5 py-1 rounded bg-white/15" style="color:#59C3DB;">04</span>
+          <h2 class="font-display text-xl font-bold text-white">Strict Zero-BGV &amp; Privacy Guarantee</h2>
+        </div>
+        <p class="text-sm text-slate-200 leading-relaxed mb-4">
+          NesaDiv is an intelligence tool, not a background verification agency. We never contact your current or former employers, never sell candidate profiles to recruiters, and never publish identifiable salary records.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a href="/ctc-decompiler.html" class="bg-white text-slate-950 font-semibold text-xs px-4 py-2.5 rounded-lg hover:bg-slate-100 transition">
+            Test CTC Decompiler (Free)
+          </a>
+          <a href="/salary-dossier.html" class="border border-white/30 text-white font-semibold text-xs px-4 py-2.5 rounded-lg hover:bg-white/10 transition">
+            Generate Pro Se PSWR (₹299) &rarr;
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <div id="nd-footer"></div>
+
+  <script src="/assets/js/layout.js"></script>
+</body>
+</html>
