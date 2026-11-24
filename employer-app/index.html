@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en-IN" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Employer Workspace | NesaDiv for Employers</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#2563EB" />
+
+  <!-- PWA Manifest & Brand Icons -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <!-- Typography, Tailwind & Supabase -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+  <!-- Auth Loading Overlay -->
+  <div id="nd-auth-loader" class="fixed inset-0 z-50 bg-white flex items-center justify-center no-print">
+    <div class="text-center">
+      <img src="/logo.png" alt="NesaDiv Logo" class="w-10 h-10 object-contain mx-auto mb-3" onerror="this.style.display='none'" />
+      <p class="text-xs font-medium text-slate-500">Verifying Employer Workspace...</p>
+    </div>
+  </div>
+
+  <div class="min-h-screen flex flex-col lg:flex-row">
+
+    <!-- Sidebar (Hidden on Print) -->
+    <aside id="nd-emp-sidebar" class="no-print w-full lg:w-64 bg-slate-950 text-slate-300 flex flex-col shrink-0">
+      <div class="h-16 px-5 flex items-center justify-between border-b border-slate-800">
+        <a href="/index.html" class="flex items-center gap-2.5">
+          <img src="/logo.png" alt="NesaDiv Logo" class="w-7 h-7 object-contain" onerror="this.style.display='none'" />
+          <span class="font-display text-white font-extrabold tracking-tight text-base">NESA<span style="color:#6C8EE8;">DIV</span></span>
+          <span class="text-[9px] font-mono-num uppercase px-1.5 py-0.5 rounded bg-blue-600/30 text-blue-300 border border-blue-500/30">HR</span>
+        </a>
+        <button id="nd-side-toggle" type="button" class="lg:hidden text-slate-400 hover:text-white p-1" aria-label="Toggle Sidebar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="nd-side-nav" class="hidden lg:flex flex-col flex-1 justify-between p-4">
+        <nav class="space-y-1 text-sm font-medium">
+          <p class="px-3 pt-1 pb-2 text-[10px] font-mono-num font-semibold uppercase tracking-widest text-slate-500">Employer Suite</p>
+          <button type="button" data-tab="bands" class="emp-tab-btn w-full text-left px-3 py-2.5 rounded-lg bg-blue-600/20 text-white border border-blue-500/30 transition">
+            Live Salary Bands
+          </button>
+          <button type="button" data-tab="offer" class="emp-tab-btn w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition">
+            Honest CTC Studio
+          </button>
+          <button type="button" data-tab="audit" class="emp-tab-btn w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition">
+            Pay Equity Audit (CSV)
+          </button>
+
+          <p class="px-3 pt-5 pb-2 text-[10px] font-mono-num font-semibold uppercase tracking-widest text-slate-500">Resources</p>
+          <a href="/methodology.html" class="block px-3 py-2 rounded-lg text-xs text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            Forensic Methodology &rarr;
+          </a>
+          <a href="/contact.html" class="block px-3 py-2 rounded-lg text-xs text-slate-400 hover:bg-slate-900 hover:text-white transition">
+            Enterprise Desk &rarr;
+          </a>
+        </nav>
+
+        <div class="pt-4 mt-6 border-t border-slate-800">
+          <div class="px-3 mb-3">
+            <p id="side-company-name" class="text-xs font-semibold text-white truncate">Employer Workspace</p>
+            <p id="side-user-email" class="text-[11px] text-slate-500 truncate">—</p>
+          </div>
+          <button onclick="window.ndLogout('/employer-app/login.html')" type="button"
+            class="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-rose-400 hover:bg-rose-950/50 hover:text-rose-300 transition">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 p-5 sm:p-8 lg:p-10 max-w-6xl">
+
+      <!-- Workspace Header (Hidden on Print) -->
+      <div class="no-print flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 mb-8">
+        <div>
+          <p class="font-mono-num text-[11px] font-bold uppercase tracking-widest text-blue-600 mb-1">NesaDiv for Employers &middot; Q4 2026 Index</p>
+          <h1 id="workspace-heading" class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950">
+            Live Salary Bands
+          </h1>
+        </div>
+        <div class="px-3.5 py-2 rounded-lg bg-white border border-slate-200 text-xs self-start sm:self-auto">
+          <span class="text-slate-500">Workspace:</span>
+          <strong id="top-company-name" class="text-slate-950 ml-1">—</strong>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           TAB 1: LIVE SALARY BANDS
+           ========================================================= -->
+      <section id="panel-bands" class="emp-panel space-y-6">
+        <div class="nd-card p-5 bg-white grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label for="b_tier" class="block text-xs font-semibold text-slate-700 mb-1.5">Employer Tier</label>
+            <select id="b_tier" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="startup">High-Growth Startups &amp; Product</option>
+              <option value="gcc">Global Capability Centers (GCCs)</option>
+              <option value="services">IT Services &amp; Consulting</option>
+            </select>
+          </div>
+          <div>
+            <label for="b_city" class="block text-xs font-semibold text-slate-700 mb-1.5">Metro City</label>
+            <select id="b_city" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="1.00">Bengaluru (1.00x Baseline)</option>
+              <option value="0.96">Mumbai (0.96x)</option>
+              <option value="0.95">Delhi NCR (0.95x)</option>
+              <option value="0.94">Hyderabad (0.94x)</option>
+              <option value="0.91">Pune (0.91x)</option>
+              <option value="0.89">Chennai (0.89x)</option>
+            </select>
+          </div>
+          <div>
+            <label for="b_role" class="block text-xs font-semibold text-slate-700 mb-1.5">Role Filter</label>
+            <select id="b_role" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="all">All Roles</option>
+              <option value="Software Engineer (Backend)">Software Engineer (Backend)</option>
+              <option value="Product Manager">Product Manager</option>
+              <option value="Data Scientist / ML Engineer">Data Scientist / ML Engineer</option>
+              <option value="DevOps & Cloud Engineer">DevOps &amp; Cloud Engineer</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="nd-card bg-white overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-sm">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-200 text-xs font-mono-num uppercase tracking-wider text-slate-500">
+                  <th class="py-3.5 px-6">Role</th>
+                  <th class="py-3.5 px-4">Exp Band</th>
+                  <th class="py-3.5 px-4 text-right">P25 Fixed</th>
+                  <th class="py-3.5 px-4 text-right text-slate-900">P50 Median</th>
+                  <th class="py-3.5 px-4 text-right text-blue-700">P75 Target</th>
+                  <th class="py-3.5 px-6 text-right">P90 Top</th>
+                </tr>
+              </thead>
+              <tbody id="emp-live-bands-body" class="divide-y divide-slate-100"></tbody>
+            </table>
+          </div>
+          <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 text-xs text-slate-500">
+            All figures represent <strong>Annual Fixed Gross (LPA)</strong> excluding discretionary variable bonuses and ESOPs.
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           TAB 2: HONEST CTC OFFER STUDIO
+           ========================================================= -->
+      <section id="panel-offer" class="emp-panel hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+          <!-- Left: Offer Inputs (Hidden on Print) -->
+          <div class="no-print lg:col-span-5 nd-card p-6 bg-white space-y-4">
+            <h2 class="font-display text-sm font-bold text-slate-950 pb-3 border-b border-slate-100">Configure Candidate Offer</h2>
+            <div>
+              <label for="o_cand" class="block text-xs font-semibold text-slate-700 mb-1">Candidate Name &amp; Role</label>
+              <input type="text" id="o_cand" value="Rohan Verma — Senior Backend Engineer"
+                class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label for="o_fixed" class="block text-xs font-semibold text-slate-700 mb-1">Fixed Gross (₹/Yr)</label>
+                <input type="number" id="o_fixed" value="2200000" min="0" step="50000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-xs focus:outline-none focus:ring-2 focus:ring-blue-600" />
+              </div>
+              <div>
+                <label for="o_var" class="block text-xs font-semibold text-slate-700 mb-1">Variable Bonus (₹/Yr)</label>
+                <input type="number" id="o_var" value="220000" min="0" step="10000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-xs focus:outline-none focus:ring-2 focus:ring-blue-600" />
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label for="o_esop" class="block text-xs font-semibold text-slate-700 mb-1">Annualized ESOP (₹/Yr)</label>
+                <input type="number" id="o_esop" value="300000" min="0" step="25000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-xs focus:outline-none focus:ring-2 focus:ring-blue-600" />
+              </div>
+              <div>
+                <label for="o_retiral" class="block text-xs font-semibold text-slate-700 mb-1">Employer PF &amp; Benefits (₹)</label>
+                <input type="number" id="o_retiral" value="80000" min="0" step="5000"
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg font-mono-num text-xs focus:outline-none focus:ring-2 focus:ring-blue-600" />
+              </div>
+            </div>
+            <button type="button" onclick="window.print()" class="w-full nd-btn-accent py-2.5 text-xs">
+              Print / Save Honest CTC Offer PDF &rarr;
+            </button>
+          </div>
+
+          <!-- Right: Printable Honest CTC Offer Sheet -->
+          <div class="lg:col-span-7 nd-card p-7 sm:p-8 bg-white">
+            <div class="flex items-start justify-between pb-5 mb-5 border-b border-slate-200">
+              <div>
+                <div class="flex items-center gap-2 mb-1.5">
+                  <img src="/logo.png" alt="NesaDiv Logo" class="w-5 h-5 object-contain" onerror="this.style.display='none'" />
+                  <span class="font-mono-num text-[10px] font-bold uppercase tracking-wider text-emerald-700">NesaDiv Verified Honest CTC Format</span>
+                </div>
+                <h2 class="font-display text-xl font-extrabold text-slate-950" id="out-o-company">Your Company</h2>
+                <p class="text-xs text-slate-500 mt-0.5">Prepared for <strong id="out-o-cand" class="text-slate-900">—</strong></p>
+              </div>
+              <div class="text-right">
+                <span class="block text-[10px] font-mono-num uppercase text-slate-400">Headline CTC</span>
+                <span id="out-o-ctc" class="font-mono-num text-lg font-bold text-slate-950">₹0</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl text-white mb-6 flex items-center justify-between" style="background: linear-gradient(135deg, #020617 0%, #0B3D91 100%);">
+              <div>
+                <span class="block font-mono-num text-[10px] uppercase tracking-wider" style="color:#59C3DB;">Estimated Monthly Net In-Hand</span>
+                <span class="text-[11px] text-slate-300">Tax Year 2026–27 New Regime (After PF &amp; Prof. Tax)</span>
+              </div>
+              <div id="out-o-inhand" class="font-mono-num text-2xl font-bold text-white">₹0</div>
+            </div>
+
+            <div class="space-y-3 text-xs">
+              <div class="flex justify-between py-2 border-b border-slate-100">
+                <span class="font-semibold text-slate-800">Guaranteed Fixed Gross (Annual)</span>
+                <span id="out-o-fixed" class="font-mono-num font-bold text-slate-950">₹0</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-slate-100">
+                <span class="text-slate-600">Performance Variable Bonus (Non-Monthly)</span>
+                <span id="out-o-var" class="font-mono-num font-semibold text-slate-900">₹0</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-slate-100">
+                <span class="text-slate-600">Annualized ESOP Grant (4-Year Vesting)</span>
+                <span id="out-o-esop" class="font-mono-num font-semibold text-slate-900">₹0</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-slate-100">
+                <span class="text-slate-600">Employer PF, Gratuity &amp; Insurance</span>
+                <span id="out-o-retiral" class="font-mono-num font-semibold text-slate-900">₹0</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="text-slate-500">Est. Annual Income Tax (New Regime 2026–27)</span>
+                <span id="out-o-tax" class="font-mono-num text-rose-700">₹0</span>
+              </div>
+            </div>
+
+            <p class="text-[10px] text-slate-400 mt-6 pt-4 border-t border-slate-100">
+              Generated via NesaDiv Honest CTC Studio. Separates guaranteed cash liquidity from variable and equity components.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =========================================================
+           TAB 3: CSV PAY EQUITY & RETENTION AUDIT
+           ========================================================= -->
+      <section id="panel-audit" class="emp-panel hidden space-y-6">
+        <div class="nd-card p-6 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="font-display text-base font-bold text-slate-950 mb-1">Upload Anonymized Team Roster CSV</h2>
+            <p class="text-xs text-slate-600">
+              Format: <code class="font-mono-num bg-slate-100 px-1.5 py-0.5 rounded">emp_id,role,exp_band,fixed_lpa</code> &middot; Runs 100% locally in your browser (Zero data leaves your device).
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 shrink-0">
+            <label class="nd-btn-primary px-4 py-2 text-xs cursor-pointer">
+              Upload CSV File
+              <input type="file" id="csv-file-input" accept=".csv" class="hidden" />
+            </label>
+            <button id="load-sample-csv" type="button" class="text-xs font-semibold text-blue-600 hover:underline px-2 py-2">
+              Load Sample Roster
+            </button>
+          </div>
+        </div>
+
+        <!-- Audit KPI Strip -->
+        <div id="audit-kpis" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="nd-card p-5 bg-white">
+            <span class="block text-[10px] font-mono-num uppercase text-slate-400">Employees Audited</span>
+            <div id="audit-total" class="text-2xl font-bold font-mono-num text-slate-950 mt-1">0</div>
+          </div>
+          <div class="nd-card p-5 bg-rose-50/50 border-rose-200">
+            <span class="block text-[10px] font-mono-num uppercase text-rose-700">High Flight Risk (&lt;-10% vs P50)</span>
+            <div id="audit-risk" class="text-2xl font-bold font-mono-num text-rose-700 mt-1">0</div>
+          </div>
+          <div class="nd-card p-5 bg-white">
+            <span class="block text-[10px] font-mono-num uppercase text-slate-400">Est. Budget to Close Gap</span>
+            <div id="audit-budget" class="text-2xl font-bold font-mono-num text-blue-700 mt-1">₹0L</div>
+          </div>
+        </div>
+
+        <!-- Audit Results Table -->
+        <div class="nd-card bg-white overflow-hidden">
+          <div id="audit-empty" class="p-10 text-center text-xs text-slate-500">
+            Upload a CSV or click <strong>Load Sample Roster</strong> to run an instant Pay Equity &amp; Retention Audit.
+          </div>
+          <div id="audit-table-wrap" class="hidden overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-200 font-mono-num uppercase text-slate-500">
+                  <th class="py-3 px-6">Emp ID</th>
+                  <th class="py-3 px-4">Role &amp; Exp</th>
+                  <th class="py-3 px-4 text-right">Current Fixed</th>
+                  <th class="py-3 px-4 text-right">Q4 P50 Median</th>
+                  <th class="py-3 px-6 text-right">Variance &amp; Risk</th>
+                </tr>
+              </thead>
+              <tbody id="audit-tbody" class="divide-y divide-slate-100"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/supabase-client.js"></script>
+  <script>
+    (async function () {
+      const toggleBtn = document.getElementById('nd-side-toggle');
+      const sideNav = document.getElementById('nd-side-nav');
+      if (toggleBtn && sideNav) toggleBtn.addEventListener('click', () => sideNav.classList.toggle('hidden'));
+
+      const auth = await window.ndRequireAuth('employer');
+      if (!auth) return;
+
+      const { session, profile } = auth;
+      const meta = (session.user && session.user.user_metadata) || {};
+      const companyName = meta.company_name || (profile && profile.full_name) || 'Employer Workspace';
+
+      document.getElementById('side-company-name').textContent = companyName;
+      document.getElementById('top-company-name').textContent = companyName;
+      document.getElementById('out-o-company').textContent = companyName;
+      document.getElementById('side-user-email').textContent = session.user.email;
+
+      // Tab Switching
+      const tabTitles = {
+        bands: 'Live Salary Bands',
+        offer: 'Honest CTC Offer Studio',
+        audit: 'Pay Equity & Retention Audit'
+      };
+      const tabBtns = document.querySelectorAll('.emp-tab-btn');
+      const panels = document.querySelectorAll('.emp-panel');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-tab');
+          tabBtns.forEach(b => {
+            b.className = 'emp-tab-btn w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-900 hover:text-white transition';
+          });
+          btn.className = 'emp-tab-btn w-full text-left px-3 py-2.5 rounded-lg bg-blue-600/20 text-white border border-blue-500/30 transition';
+          panels.forEach(p => p.classList.add('hidden'));
+          document.getElementById(`panel-${target}`).classList.remove('hidden');
+          document.getElementById('workspace-heading').textContent = tabTitles[target];
+        });
+      });
+
+      // =========================================================
+      // TAB 1: LIVE SALARY BANDS LOGIC
+      // =========================================================
+      const baseBands = {
+        startup: [
+          { role: 'Software Engineer (Backend)', exp: '1–3 Yrs', p25: 14.0, p50: 19.0, p75: 25.0, p90: 32.0 },
+          { role: 'Software Engineer (Backend)', exp: '3–5 Yrs', p25: 24.0, p50: 32.0, p75: 42.0, p90: 52.0 },
+          { role: 'Product Manager', exp: '3–5 Yrs', p25: 22.0, p50: 29.5, p75: 38.0, p90: 48.0 },
+          { role: 'Data Scientist / ML Engineer', exp: '3–5 Yrs', p25: 23.0, p50: 31.0, p75: 40.0, p90: 50.0 },
+          { role: 'DevOps & Cloud Engineer', exp: '3–5 Yrs', p25: 20.0, p50: 27.0, p75: 35.0, p90: 44.0 }
+        ],
+        gcc: [
+          { role: 'Software Engineer (Backend)', exp: '1–3 Yrs', p25: 13.5, p50: 18.0, p75: 23.5, p90: 29.0 },
+          { role: 'Software Engineer (Backend)', exp: '3–5 Yrs', p25: 22.5, p50: 29.0, p75: 37.0, p90: 45.0 },
+          { role: 'Product Manager', exp: '3–5 Yrs', p25: 21.0, p50: 28.0, p75: 35.5, p90: 43.0 },
+          { role: 'Data Scientist / ML Engineer', exp: '3–5 Yrs', p25: 22.0, p50: 30.0, p75: 38.5, p90: 46.0 },
+          { role: 'DevOps & Cloud Engineer', exp: '3–5 Yrs', p25: 19.0, p50: 25.5, p75: 33.0, p90: 41.0 }
+        ],
+        services: [
+          { role: 'Software Engineer (Backend)', exp: '1–3 Yrs', p25: 7.0, p50: 9.5, p75: 13.0, p90: 16.5 },
+          { role: 'Software Engineer (Backend)', exp: '3–5 Yrs', p25: 11.5, p50: 15.5, p75: 20.0, p90: 25.0 },
+          { role: 'Product Manager', exp: '3–5 Yrs', p25: 13.0, p50: 17.5, p75: 22.5, p90: 28.0 },
+          { role: 'Data Scientist / ML Engineer', exp: '3–5 Yrs', p25: 12.0, p50: 16.5, p75: 21.5, p90: 27.0 },
+          { role: 'DevOps & Cloud Engineer', exp: '3–5 Yrs', p25: 11.0, p50: 14.5, p75: 19.0, p90: 24.0 }
+        ]
+      };
+
+      function renderLiveBands() {
+        const tier = document.getElementById('b_tier').value;
+        const mult = Number(document.getElementById('b_city').value);
+        const roleFilter = document.getElementById('b_role').value;
+
+        const rows = (baseBands[tier] || baseBands.startup).filter(r => roleFilter === 'all' || r.role === roleFilter);
+        document.getElementById('emp-live-bands-body').innerHTML = rows.map(r => `
+          <tr class="hover:bg-slate-50/70">
+            <td class="py-3.5 px-6 font-semibold text-slate-950">${r.role}</td>
+            <td class="py-3.5 px-4 font-mono-num text-xs text-slate-600">${r.exp}</td>
+            <td class="py-3.5 px-4 text-right font-mono-num text-slate-600">₹${(r.p25 * mult).toFixed(1)}L</td>
+            <td class="py-3.5 px-4 text-right font-mono-num font-bold text-slate-950">₹${(r.p50 * mult).toFixed(1)}L</td>
+            <td class="py-3.5 px-4 text-right font-mono-num font-bold text-blue-700 bg-blue-50/40">₹${(r.p75 * mult).toFixed(1)}L</td>
+            <td class="py-3.5 px-6 text-right font-mono-num text-slate-700">₹${(r.p90 * mult).toFixed(1)}L</td>
+          </tr>
+        `).join('');
+      }
+      ['b_tier', 'b_city', 'b_role'].forEach(id => document.getElementById(id).addEventListener('change', renderLiveBands));
+      renderLiveBands();
+
+      // =========================================================
+      // TAB 2: HONEST CTC OFFER STUDIO (2026-27 NEW REGIME)
+      // =========================================================
+      function calcNewRegimeTax2026(fixedGross) {
+        const taxable = Math.max(0, fixedGross - 75000);
+        if (taxable <= 1200000) return 0;
+        let tax = 0;
+        if (taxable > 400000) tax += Math.min(taxable - 400000, 400000) * 0.05;
+        if (taxable > 800000) tax += Math.min(taxable - 800000, 400000) * 0.10;
+        if (taxable > 1200000) tax += Math.min(taxable - 1200000, 400000) * 0.15;
+        if (taxable > 1600000) tax += Math.min(taxable - 1600000, 400000) * 0.20;
+        if (taxable > 2000000) tax += Math.min(taxable - 2000000, 400000) * 0.25;
+        if (taxable > 2400000) tax += (taxable - 2400000) * 0.30;
+        // Marginal relief above 12L
+        if (taxable > 1200000 && tax > (taxable - 1200000)) {
+          tax = taxable - 1200000;
+        }
+        return tax * 1.04; // + 4% Cess
+      }
+
+      function fmtINR(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+      function updateOffer() {
+        const cand = document.getElementById('o_cand').value || 'Candidate';
+        const fixed = Math.max(0, Number(document.getElementById('o_fixed').value) || 0);
+        const variable = Math.max(0, Number(document.getElementById('o_var').value) || 0);
+        const esop = Math.max(0, Number(document.getElementById('o_esop').value) || 0);
+        const retiral = Math.max(0, Number(document.getElementById('o_retiral').value) || 0);
+
+        const ctc = fixed + variable + esop + retiral;
+        const annualTax = calcNewRegimeTax2026(fixed);
+        const empPF = 21600; // Standard ₹1,800/mo statutory cap
+        const profTax = 2400;
+        const monthlyInHand = Math.max(0, (fixed - annualTax - empPF - profTax) / 12);
+
+        document.getElementById('out-o-cand').textContent = cand;
+        document.getElementById('out-o-ctc').textContent = fmtINR(ctc);
+        document.getElementById('out-o-inhand').textContent = fmtINR(monthlyInHand) + ' / mo';
+        document.getElementById('out-o-fixed').textContent = fmtINR(fixed);
+        document.getElementById('out-o-var').textContent = fmtINR(variable);
+        document.getElementById('out-o-esop').textContent = fmtINR(esop);
+        document.getElementById('out-o-retiral').textContent = fmtINR(retiral);
+        document.getElementById('out-o-tax').textContent = '-' + fmtINR(annualTax);
+      }
+      ['o_cand', 'o_fixed', 'o_var', 'o_esop', 'o_retiral'].forEach(id => {
+        document.getElementById(id).addEventListener('input', updateOffer);
+      });
+      updateOffer();
+
+      // =========================================================
+      // TAB 3: CSV PAY EQUITY & RETENTION AUDIT
+      // =========================================================
+      const p50Lookup = {
+        'Software Engineer (Backend)|1-3y': 19.0,
+        'Software Engineer (Backend)|3-5y': 32.0,
+        'Product Manager|3-5y': 29.5,
+        'Data Scientist / ML Engineer|3-5y': 31.0,
+        'DevOps & Cloud Engineer|3-5y': 27.0
+      };
+
+      function runAudit(rows) {
+        let riskCount = 0;
+        let totalGap = 0;
+
+        const html = rows.map(r => {
+          const key = `${r.role}|${r.exp}`;
+          const median = p50Lookup[key] || 24.0;
+          const diff = r.fixed - median;
+          const pct = (diff / median) * 100;
+          const isRisk = pct < -10;
+          if (isRisk) {
+            riskCount++;
+            totalGap += Math.abs(diff);
+          }
+          const badge = isRisk
+            ? `<span class="font-mono-num font-bold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded">${pct.toFixed(0)}% (Flight Risk)</span>`
+            : `<span class="font-mono-num font-semibold text-emerald-700">${pct >= 0 ? '+' : ''}${pct.toFixed(0)}% (Market Aligned)</span>`;
+
+          return `
+            <tr>
+              <td class="py-3 px-6 font-mono-num font-semibold text-slate-900">${r.id}</td>
+              <td class="py-3 px-4 text-slate-700">${r.role} &middot; <span class="font-mono-num text-slate-500">${r.exp}</span></td>
+              <td class="py-3 px-4 text-right font-mono-num font-semibold text-slate-950">₹${r.fixed.toFixed(1)}L</td>
+              <td class="py-3 px-4 text-right font-mono-num text-slate-600">₹${median.toFixed(1)}L</td>
+              <td class="py-3 px-6 text-right">${badge}</td>
+            </tr>
+          `;
+        }).join('');
+
+        document.getElementById('audit-total').textContent = rows.length;
+        document.getElementById('audit-risk').textContent = riskCount;
+        document.getElementById('audit-budget').textContent = `₹${totalGap.toFixed(1)}L`;
+        document.getElementById('audit-tbody').innerHTML = html;
+
+        document.getElementById('audit-kpis').classList.remove('hidden');
+        document.getElementById('audit-empty').classList.add('hidden');
+        document.getElementById('audit-table-wrap').classList.remove('hidden');
+      }
+
+      document.getElementById('load-sample-csv').addEventListener('click', () => {
+        runAudit([
+          { id: 'EMP-104', role: 'Software Engineer (Backend)', exp: '3-5y', fixed: 25.5 },
+          { id: 'EMP-219', role: 'Product Manager', exp: '3-5y', fixed: 24.0 },
+          { id: 'EMP-308', role: 'Data Scientist / ML Engineer', exp: '3-5y', fixed: 32.5 },
+          { id: 'EMP-412', role: 'Software Engineer (Backend)', exp: '1-3y', fixed: 16.0 },
+          { id: 'EMP-501', role: 'DevOps & Cloud Engineer', exp: '3-5y', fixed: 28.0 }
+        ]);
+      });
+
+      document.getElementById('csv-file-input').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const lines = ev.target.result.trim().split(/\r?\n/).slice(1);
+          const parsed = lines.map(line => {
+            const [id, role, exp, fixed] = line.split(',').map(s => s.trim());
+            return { id: id || 'EMP', role: role || 'Software Engineer (Backend)', exp: exp || '3-5y', fixed: Number(fixed) || 0 };
+          }).filter(r => r.fixed > 0);
+          if (parsed.length > 0) runAudit(parsed);
+        };
+        reader.readAsText(file);
+      });
+
+      document.getElementById('nd-auth-loader').classList.add('hidden');
+    })();
+  </script>
+</body>
+</html>
