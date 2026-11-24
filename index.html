@@ -4,16 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>NesaDiv | India's Salary Intelligence &amp; Compensation Benchmarking Platform</title>
-  <meta name="description" content="Decode Indian CTC structures, strip phantom variables, and calculate True Net Monthly In-Hand pay. Generate your ₹299 Pro Se PSWR or benchmark live salary bands across Indian metros." />
-  <meta name="keywords" content="NesaDiv, Pro Se PSWR, Personal Salary Worthiness Report, Appraisal Worthiness Report, CTC Decompiler, Indian Salary Benchmarks, Honest CTC Offer, ESOP Visualizer" />
+  <meta name="description" content="Decode Indian CTC structures, strip phantom variables, and calculate True Net Monthly In-Hand pay. Generate your ₹299 Pro Se PSWR or benchmark live Q4 2026 salary bands across Indian metros." />
+  <meta name="keywords" content="NesaDiv, Pro Se PSWR, Personal Salary Worthiness Report, Appraisal Worthiness Report, CTC Decompiler, Indian Salary Benchmarks, Honest CTC Offer, ESOP Visualizer, Salary Negotiation India" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="theme-color" content="#2563EB" />
   <link rel="canonical" href="https://www.nesadiv.com/" />
 
-  <!-- PWA Manifest & Brand Icons -->
+  <!-- PWA Manifest & Complete Favicon Suite -->
   <link rel="manifest" href="/manifest.json" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.png" />
 
   <!-- Geo Targeting -->
   <meta name="geo.region" content="IN-KA" />
@@ -32,14 +34,15 @@
   <meta name="twitter:description" content="Decode Indian CTCs, verify your exact market worth, and negotiate with verified Q4 2026 salary bands." />
   <meta name="twitter:image" content="https://www.nesadiv.com/logo.png" />
 
-  <!-- Typography: Inter + Plus Jakarta Sans + JetBrains Mono -->
+  <!-- Anti-FOUT Typography: Preconnect + display=optional -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=optional" rel="stylesheet" />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/main.css" />
 
-  <!-- Comprehensive AEO & SEO JSON-LD Graph -->
+  <!-- Comprehensive AEO, SEO & Google Sitelinks JSON-LD Graph -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,8 +53,12 @@
         "name": "NesaDiv",
         "alternateName": "NesaDiv Compensation Intelligence",
         "url": "https://www.nesadiv.com/",
-        "logo": "https://www.nesadiv.com/logo.png",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.nesadiv.com/logo.png"
+        },
         "image": "https://www.nesadiv.com/logo.png",
+        "email": "support@nesadiv.com",
         "description": "India's institutional salary intelligence platform providing Personal Salary Worthiness Reports (PSWR), Appraisal Worthiness Reports (AWR), Forensic CTC Decompilation, Live Salary Bands, and Pay Equity Audits.",
         "areaServed": { "@type": "Country", "name": "India" },
         "address": {
@@ -70,6 +77,39 @@
         "inLanguage": "en-IN"
       },
       {
+        "@type": "SoftwareApplication",
+        "name": "NesaDiv Forensic CTC Decompiler & PSWR Engine",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web, PWA",
+        "url": "https://www.nesadiv.com/ctc-decompiler.html",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Forensic CTC Decompiler",
+            "price": "0",
+            "priceCurrency": "INR"
+          },
+          {
+            "@type": "Offer",
+            "name": "Pro Se PSWR (Personal Salary Worthiness Report)",
+            "price": "299",
+            "priceCurrency": "INR"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "Primary Site Navigation",
+        "itemListElement": [
+          { "@type": "SiteNavigationElement", "position": 1, "name": "Forensic CTC Decompiler", "url": "https://www.nesadiv.com/ctc-decompiler.html" },
+          { "@type": "SiteNavigationElement", "position": 2, "name": "Pro Se PSWR (₹299)", "url": "https://www.nesadiv.com/salary-dossier.html" },
+          { "@type": "SiteNavigationElement", "position": 3, "name": "Employer Compensation Suite", "url": "https://www.nesadiv.com/employers.html" },
+          { "@type": "SiteNavigationElement", "position": 4, "name": "Forensic Methodology", "url": "https://www.nesadiv.com/methodology.html" },
+          { "@type": "SiteNavigationElement", "position": 5, "name": "Verified Case Studies", "url": "https://www.nesadiv.com/case-studies.html" },
+          { "@type": "SiteNavigationElement", "position": 6, "name": "Contact & Enterprise Desk", "url": "https://www.nesadiv.com/contact.html" }
+        ]
+      },
+      {
         "@type": "FAQPage",
         "mainEntity": [
           {
@@ -77,7 +117,7 @@
             "name": "What is the difference between the Pro Se PSWR and the Member Dashboard Premium PSWR?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The Pro Se PSWR (₹299) is a zero-login, email-delivered Personal Salary Worthiness Report for fast market benchmarking. The Member Dashboard Premium PSWR and Appraisal Worthiness Report (AWR) are authenticated, in-depth dossiers with multi-tier comparisons, negotiation playbooks, and ESOP modeling."
+              "text": "The Pro Se PSWR (₹299) is a zero-login, email-delivered Personal Salary Worthiness Report for fast market benchmarking and HR screening calls. The Member Dashboard Premium PSWR and Appraisal Worthiness Report (AWR) are authenticated, in-depth dossiers with multi-tier employer comparisons (IT Services vs Startups vs GCCs), negotiation playbooks, and ESOP modeling."
             }
           },
           {
@@ -86,6 +126,30 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "NesaDiv is built exclusively for experienced Indian professionals with 6+ months of work experience and corporate HR teams. Freshers with under 6 months of experience are routed to our sister platform, Competence.co.in."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does NesaDiv contact my current or former employer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. NesaDiv operates under a strict Zero-BGV Policy. We never contact your current employer, former employers, or HR department."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is True Net Monthly In-Hand calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our Forensic CTC Decompiler strips out non-monthly-cash components (variable bonus, ESOPs, joining bonus, employer PF, gratuity, and insurance) to isolate Fixed Gross Salary, then applies deterministic India 2026-27 New Tax Regime slabs, ₹75,000 standard deduction, Section 87A rebate, surcharge, 4% cess, employee PF, and professional tax."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How are NesaDiv reports delivered after payment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "All NesaDiv reports and tools are delivered digitally and instantaneously. Pro Se PSWR dossiers are generated immediately on-screen as print-ready PDFs and dispatched to your email address within minutes."
             }
           }
         ]
@@ -101,7 +165,7 @@
 
   <main id="nd-main-content">
 
-    <!-- HERO SECTION: Institutional Split Layout -->
+    <!-- 1. HERO SECTION: Institutional Split Layout -->
     <section class="border-b border-slate-200 bg-gradient-to-b from-slate-50/90 to-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -113,13 +177,13 @@
               Q4 2026 Verified Index &middot; Experienced Professionals (6+ Mos)
             </div>
 
-            <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 leading-[1.1] mb-5">
+            <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 leading-[1.08] mb-5">
               Stop negotiating blind.<br />
               <span class="text-blue-600">Know your exact market worth.</span>
             </h1>
 
             <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 max-w-2xl">
-              Indian CTC letters hide phantom components, inflated variable pay, and illiquid ESOPs. NesaDiv strips away the noise with deterministic 2026–27 tax math and verified P25–P90 market percentiles.
+              Indian CTC letters routinely hide phantom components, inflated variable pay, and illiquid ESOPs. NesaDiv strips away the noise with deterministic 2026–27 tax math and verified P25–P90 market percentiles across Indian metros.
             </p>
 
             <div class="flex flex-wrap items-center gap-3">
@@ -130,7 +194,7 @@
                 <span>Get Pro Se PSWR</span>
                 <span class="font-mono-num text-xs bg-white/20 px-1.5 py-0.5 rounded">₹299</span>
               </a>
-              <a href="/dashboard/login.html" class="px-5 py-3 text-sm font-semibold text-slate-800 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition">
+              <a href="/dashboard/login.html" data-no-pjax="true" class="px-5 py-3 text-sm font-semibold text-slate-800 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition">
                 Member Dashboard &rarr;
               </a>
             </div>
@@ -186,7 +250,31 @@
       </div>
     </section>
 
-    <!-- PUBLIC NO-LOGIN TOOLS -->
+    <!-- 2. INSTITUTIONAL TRUST & METRICS STRIP -->
+    <section class="border-b border-slate-200 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="border-l-2 border-blue-600 pl-4">
+            <p class="font-mono-num text-2xl sm:text-3xl font-bold text-slate-950">480,000+</p>
+            <p class="text-xs text-slate-600 mt-1">Calibrated Indian compensation profiles across 6+ metro hubs</p>
+          </div>
+          <div class="border-l-2 border-emerald-600 pl-4">
+            <p class="font-mono-num text-2xl sm:text-3xl font-bold text-slate-950">FY 2026–27</p>
+            <p class="text-xs text-slate-600 mt-1">Deterministic New Tax Regime engine with ₹75k std deduction</p>
+          </div>
+          <div class="border-l-2 border-indigo-600 pl-4">
+            <p class="font-mono-num text-2xl sm:text-3xl font-bold text-slate-950">P25 &ndash; P90</p>
+            <p class="text-xs text-slate-600 mt-1">Segmented by IT Services, Startups, and Global Capability Centers</p>
+          </div>
+          <div class="border-l-2 border-slate-900 pl-4">
+            <p class="font-mono-num text-2xl sm:text-3xl font-bold text-slate-950">100% Private</p>
+            <p class="text-xs text-slate-600 mt-1">Zero-BGV guarantee—we never contact your current or past employers</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PUBLIC NO-LOGIN TOOLS -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
         <div>
@@ -205,9 +293,14 @@
               <span class="text-xs text-slate-500">Tax Year 2026–27 New Regime</span>
             </div>
             <h3 class="font-display text-xl font-bold text-slate-950 mb-2">Forensic CTC Decompiler</h3>
-            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+            <p class="text-sm text-slate-600 leading-relaxed mb-5">
               Enter your headline CTC, variable bonus, PF, gratuity, and ESOP grant. See your exact <strong>True Net Monthly In-Hand</strong> pay and expose the Phantom CTC gap immediately.
             </p>
+            <ul class="space-y-2 text-xs text-slate-600 mb-6">
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold">&#10003;</span> Isolates Fixed Gross from employer PF, gratuity &amp; variable pay</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold">&#10003;</span> Exact Section 87A rebate, marginal relief &amp; 4% cess math</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold">&#10003;</span> Computes your Liquidity Ratio vs. Phantom CTC Ratio</li>
+            </ul>
           </div>
           <a href="/ctc-decompiler.html" class="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-800">
             Launch CTC Decompiler &rarr;
@@ -219,12 +312,17 @@
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="text-[11px] font-mono-num font-bold uppercase px-2.5 py-1 rounded bg-blue-100 text-blue-800 border border-blue-200">₹299 One-Time</span>
-              <span class="text-xs text-slate-500">Zero Login &middot; Emailed PDF</span>
+              <span class="text-xs text-slate-500">Zero Login &middot; Instant PDF</span>
             </div>
             <h3 class="font-display text-xl font-bold text-slate-950 mb-2">Pro Se PSWR (Personal Salary Worthiness Report)</h3>
-            <p class="text-sm text-slate-600 leading-relaxed mb-6">
-              Need verified proof of your market value before an HR screening call? Enter your role, city, and experience band—get your exact P25–P90 standing and counter-offer script emailed in minutes.
+            <p class="text-sm text-slate-600 leading-relaxed mb-5">
+              Need verified proof of your market value before an HR screening call? Enter your role, city, and experience band—get your exact P25–P90 standing and counter-offer script in minutes.
             </p>
+            <ul class="space-y-2 text-xs text-slate-700 mb-6">
+              <li class="flex items-center gap-2"><span class="text-blue-600 font-bold">&#10003;</span> Verified Q4 2026 P25, P50, P75 &amp; P90 market bands for your city</li>
+              <li class="flex items-center gap-2"><span class="text-blue-600 font-bold">&#10003;</span> Exact Underpayment / Market Correction gap in ₹ LPA</li>
+              <li class="flex items-center gap-2"><span class="text-blue-600 font-bold">&#10003;</span> Ready-to-send HR counter-offer email &amp; phone script</li>
+            </ul>
           </div>
           <a href="/salary-dossier.html" class="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-900">
             Generate Pro Se PSWR (₹299) &rarr;
@@ -233,7 +331,115 @@
       </div>
     </section>
 
-    <!-- AUTHENTICATED MEMBER DASHBOARD -->
+    <!-- 4. HOW IT WORKS: 3-STEP FORENSIC WORKFLOW -->
+    <section class="bg-slate-50 border-y border-slate-200 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-10">
+          <p class="font-mono-num text-[11px] font-bold uppercase tracking-widest text-blue-600 mb-1.5">Deterministic Workflow</p>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">How NesaDiv Replaces Guesswork With Audit-Grade Math</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="nd-card p-6 bg-white">
+            <span class="font-mono-num text-xs font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">STEP 01</span>
+            <h3 class="font-display text-base font-bold text-slate-950 mt-4 mb-2">Strip Phantom CTC</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              We separate guaranteed monthly fixed cash from employer PF, gratuity, insurance, joining bonuses, and conditional variable pay so you know your real baseline.
+            </p>
+          </div>
+          <div class="nd-card p-6 bg-white">
+            <span class="font-mono-num text-xs font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">STEP 02</span>
+            <h3 class="font-display text-base font-bold text-slate-950 mt-4 mb-2">Calibrate Against Live Bands</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Your role, years of experience, and city are benchmarked against Q4 2026 P25–P90 bands across IT Services, Funded Startups, and Global Capability Centers (GCCs).
+            </p>
+          </div>
+          <div class="nd-card p-6 bg-white">
+            <span class="font-mono-num text-xs font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">STEP 03</span>
+            <h3 class="font-display text-base font-bold text-slate-950 mt-4 mb-2">Negotiate With a Printable Dossier</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Walk into HR calls or annual appraisals with a structured PDF dossier and word-for-word counter-offer scripts that anchor the conversation to verified market medians.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. LIVE Q4 2026 INDIAN METRO SALARY BENCHMARKS PREVIEW -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div>
+          <p class="font-mono-num text-[11px] font-bold uppercase tracking-widest text-blue-600 mb-1.5">Q4 2026 Index Preview</p>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">Verified Fixed Salary Bands Across Indian Metros</h2>
+        </div>
+        <a href="/salary-dossier.html" class="text-xs font-semibold text-blue-600 hover:underline">Benchmark your exact role &amp; city &rarr;</a>
+      </div>
+
+      <div class="nd-card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-mono-num text-[11px] uppercase tracking-wider">
+                <th class="py-3.5 px-4 font-semibold">Role &amp; Experience</th>
+                <th class="py-3.5 px-4 font-semibold">Metro Hub</th>
+                <th class="py-3.5 px-4 font-semibold text-right">P25 (Entry)</th>
+                <th class="py-3.5 px-4 font-semibold text-right">P50 (Median)</th>
+                <th class="py-3.5 px-4 font-semibold text-right">P75 (Target)</th>
+                <th class="py-3.5 px-4 font-semibold text-right">P90 (Top 10%)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr class="hover:bg-slate-50/70 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900">Backend Software Engineer (3–5 Yrs)</td>
+                <td class="py-3.5 px-4 text-slate-600">Bengaluru</td>
+                <td class="py-3.5 px-4 text-right font-mono-num text-slate-700">₹24.0L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num font-bold text-blue-600">₹32.0L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num font-semibold text-slate-900">₹42.0L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num text-slate-700">₹52.0L</td>
+              </tr>
+              <tr class="hover:bg-slate-50/70 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900">Data Engineer / Analytics (3–5 Yrs)</td>
+                <td class="py-3.5 px-4 text-slate-600">Hyderabad</td>
+                <td class="py-3.5 px-4 text-right font-mono-num text-slate-700">₹16.5L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num font-bold text-blue-600">₹21.5L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num font-semibold text-slate-900">₹28.5L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num text-slate-700">₹36.0L</td>
+              </tr>
+              <tr class="hover:bg-slate-50/70 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900">Product Manager (4–6 Yrs)</td>
+                <td class="py-3.5 px-4 text-slate-600">Bengaluru / NCR</td>
+                <td class="py-3.5 px-4 text-right font-mono-num text-slate-700">₹26.0L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num font-bold text-blue-600">₹35.5L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num font-semibold text-slate-900">₹46.0L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num text-slate-700">₹58.0L</td>
+              </tr>
+              <tr class="hover:bg-slate-50/70 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900">Cloud / DevOps Architect (6–8 Yrs)</td>
+                <td class="py-3.5 px-4 text-slate-600">Bengaluru (GCC)</td>
+                <td class="py-3.5 px-4 text-right font-mono-num text-slate-700">₹31.0L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num font-bold text-blue-600">₹38.5L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num font-semibold text-slate-900">₹46.5L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num text-slate-700">₹56.0L</td>
+              </tr>
+              <tr class="hover:bg-slate-50/70 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900">Fullstack Developer (2–4 Yrs)</td>
+                <td class="py-3.5 px-4 text-slate-600">Pune / Mumbai</td>
+                <td class="py-3.5 px-4 text-right font-mono-num text-slate-700">₹13.0L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num font-bold text-blue-600">₹17.2L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num font-semibold text-slate-900">₹23.5L</td>
+                <td class="py-3.5 px-4 text-right font-mono-num text-slate-700">₹30.0L</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bg-slate-50 border-t border-slate-200 px-4 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-slate-500">
+          <span>Figures reflect guaranteed annual Fixed Cash (excluding ESOPs &amp; variable bonuses).</span>
+          <a href="/employers.html#comp-bands" class="font-semibold text-blue-600 hover:underline">Need full HR salary bands? Explore Employer Suite &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. AUTHENTICATED MEMBER DASHBOARD -->
     <section class="bg-slate-50 border-y border-slate-200 py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
@@ -241,7 +447,7 @@
             <p class="font-mono-num text-[11px] font-bold uppercase tracking-widest text-blue-600 mb-1.5">Member Dashboard &middot; Login Required</p>
             <h2 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">Deep Intelligence for Switches &amp; Appraisals</h2>
           </div>
-          <a href="/dashboard/login.html" class="nd-btn-primary px-5 py-2.5 text-sm self-start md:self-auto">
+          <a href="/dashboard/login.html" data-no-pjax="true" class="nd-btn-primary px-5 py-2.5 text-sm self-start md:self-auto">
             Create Free Account / Sign In
           </a>
         </div>
@@ -251,29 +457,110 @@
             <span class="inline-block font-mono-num text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 mb-3">Job Switches</span>
             <h3 class="font-display text-base font-bold text-slate-950 mb-2">Premium PSWR</h3>
             <p class="text-sm text-slate-600 leading-relaxed">
-              Full institutional job-switch dossier comparing IT Services, High-Growth Startups, and GCCs with tailored negotiation playbooks.
+              Full institutional job-switch dossier comparing IT Services, High-Growth Startups, and GCCs with tailored negotiation playbooks and competing-offer leverage.
             </p>
           </div>
           <div class="nd-card p-6 bg-white">
             <span class="inline-block font-mono-num text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 mb-3">Raises &amp; Promotions</span>
             <h3 class="font-display text-base font-bold text-slate-950 mb-2">Appraisal Worthiness Report (AWR)</h3>
             <p class="text-sm text-slate-600 leading-relaxed">
-              Built for internal performance reviews. Quantifies your pay-compression gap so you can defend your appraisal with hard market data.
+              Built for internal performance reviews. Quantifies your pay-compression gap so you can defend your appraisal with hard market data instead of vague asks.
             </p>
           </div>
           <div class="nd-card p-6 bg-white">
             <span class="inline-block font-mono-num text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 mb-3">Equity &amp; Gifting</span>
             <h3 class="font-display text-base font-bold text-slate-950 mb-2">ESOP Visualizer &amp; Report Sponsoring</h3>
             <p class="text-sm text-slate-600 leading-relaxed">
-              Model 4-year vesting cliffs and exit scenarios, or sponsor a Premium PSWR / AWR voucher for a colleague or mentee.
+              Model 4-year vesting cliffs, exercise costs, and exit scenarios, or sponsor a Premium PSWR / AWR voucher for a colleague or mentee.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EMPLOYER SUITE CALLOUT -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <!-- 7. TRANSPARENT PRICING IN INR (RAZORPAY-COMPLIANT) -->
+    <section id="pricing" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="font-mono-num text-[11px] font-bold uppercase tracking-widest text-blue-600 mb-1.5">Transparent INR Pricing &middot; Instant Digital Delivery</p>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-slate-950 mb-3">Pay Only for the Depth You Need</h2>
+        <p class="text-sm text-slate-600">No hidden recurring traps. All reports are generated and delivered digitally in minutes.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Tier 1: Free -->
+        <div class="nd-card p-7 flex flex-col justify-between">
+          <div>
+            <span class="font-mono-num text-[10px] font-bold uppercase tracking-wider text-slate-500">Public Utility</span>
+            <h3 class="font-display text-lg font-bold text-slate-950 mt-1">Forensic CTC Decompiler</h3>
+            <div class="mt-4 mb-5 flex items-baseline gap-1">
+              <span class="font-mono-num text-3xl font-extrabold text-slate-950">₹0</span>
+              <span class="text-xs text-slate-500">/ forever free</span>
+            </div>
+            <ul class="space-y-2.5 text-xs text-slate-600 mb-7">
+              <li>&#10003; Unlimited CTC-to-In-Hand calculations</li>
+              <li>&#10003; FY 2026–27 New Tax Regime slab math</li>
+              <li>&#10003; Phantom CTC &amp; Liquidity Ratio exposure</li>
+              <li>&#10003; Zero login required</li>
+            </ul>
+          </div>
+          <a href="/ctc-decompiler.html" class="block text-center py-2.5 px-4 text-sm font-semibold text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition">
+            Use Free Tool
+          </a>
+        </div>
+
+        <!-- Tier 2: Pro Se PSWR -->
+        <div class="nd-card p-7 border-2 border-blue-600 bg-blue-50/15 flex flex-col justify-between relative">
+          <span class="absolute -top-3 right-5 font-mono-num text-[10px] font-bold uppercase px-2.5 py-0.5 rounded bg-blue-600 text-white">Most Popular</span>
+          <div>
+            <span class="font-mono-num text-[10px] font-bold uppercase tracking-wider text-blue-600">Instant Dossier</span>
+            <h3 class="font-display text-lg font-bold text-slate-950 mt-1">Pro Se PSWR</h3>
+            <div class="mt-4 mb-5 flex items-baseline gap-1">
+              <span class="font-mono-num text-3xl font-extrabold text-slate-950">₹299</span>
+              <span class="text-xs text-slate-500">/ one-time report</span>
+            </div>
+            <ul class="space-y-2.5 text-xs text-slate-700 mb-7">
+              <li>&#10003; Personal Salary Worthiness Report (PDF)</li>
+              <li>&#10003; Live P25–P90 bands for your role &amp; city</li>
+              <li>&#10003; Market correction gap calculation</li>
+              <li>&#10003; HR counter-offer email &amp; call script</li>
+              <li>&#10003; Zero login &middot; Instant email delivery</li>
+            </ul>
+          </div>
+          <a href="/salary-dossier.html" class="nd-btn-accent block text-center py-2.5 px-4 text-sm">
+            Generate Pro Se PSWR (₹299)
+          </a>
+        </div>
+
+        <!-- Tier 3: Member & Employer -->
+        <div class="nd-card p-7 flex flex-col justify-between">
+          <div>
+            <span class="font-mono-num text-[10px] font-bold uppercase tracking-wider text-emerald-700">Authenticated Suite</span>
+            <h3 class="font-display text-lg font-bold text-slate-950 mt-1">Dashboard &amp; Employer HR</h3>
+            <div class="mt-4 mb-5 flex items-baseline gap-1">
+              <span class="font-mono-num text-3xl font-extrabold text-slate-950">₹999+</span>
+              <span class="text-xs text-slate-500">/ dossier or HR plan</span>
+            </div>
+            <ul class="space-y-2.5 text-xs text-slate-600 mb-7">
+              <li>&#10003; Premium PSWR &amp; Appraisal Report (AWR)</li>
+              <li>&#10003; 4-Year ESOP &amp; Vesting Visualizer</li>
+              <li>&#10003; Honest CTC Offer Studio (for HR)</li>
+              <li>&#10003; CSV Pay Equity &amp; Retention Audits</li>
+            </ul>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <a href="/dashboard/login.html" data-no-pjax="true" class="block text-center py-2.5 px-3 text-xs font-semibold text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition">
+              Member Login
+            </a>
+            <a href="/employers.html" class="block text-center py-2.5 px-3 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition">
+              Employer Suite
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. EMPLOYER SUITE CALLOUT -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
       <div class="rounded-2xl p-8 sm:p-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 text-white" style="background: linear-gradient(135deg, #020617 0%, #0B3D91 100%);">
         <div class="max-w-2xl">
           <p class="font-mono-num text-[11px] font-bold uppercase tracking-widest mb-2" style="color:#59C3DB;">NesaDiv for Employers &amp; HR Teams</p>
@@ -286,9 +573,71 @@
           <a href="/employers.html" class="bg-white text-slate-950 font-semibold text-sm px-5 py-3 rounded-lg hover:bg-slate-100 transition">
             Explore Employer Suite
           </a>
-          <a href="/employer-app/login.html" class="border border-white/30 text-white font-semibold text-sm px-5 py-3 rounded-lg hover:bg-white/10 transition">
+          <a href="/employer-app/login.html" data-no-pjax="true" class="border border-white/30 text-white font-semibold text-sm px-5 py-3 rounded-lg hover:bg-white/10 transition">
             Employer Portal Login
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. INSTITUTIONAL FAQ SECTION (AEO & SEO MATCHED) -->
+    <section class="bg-slate-50 border-t border-slate-200 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <p class="font-mono-num text-[11px] font-bold uppercase tracking-widest text-blue-600 mb-1.5">Frequently Asked Questions</p>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">Clarity Before You Benchmark</h2>
+        </div>
+
+        <div class="space-y-3">
+          <details class="nd-card p-5 bg-white group" open>
+            <summary class="font-display text-sm sm:text-base font-bold text-slate-950 cursor-pointer list-none flex items-center justify-between gap-4">
+              <span>What is the difference between the Pro Se PSWR (₹299) and the Member Dashboard Premium PSWR?</span>
+              <span class="text-blue-600 font-mono-num text-lg group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <p class="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+              The <strong>Pro Se PSWR (₹299)</strong> is a zero-login, email-delivered Personal Salary Worthiness Report designed for fast HR screening calls and quick market checks. The <strong>Member Dashboard Premium PSWR</strong> and <strong>Appraisal Worthiness Report (AWR)</strong> are authenticated, multi-tier dossiers comparing IT Services, Startups, and GCCs alongside ESOP modeling and saved history.
+            </p>
+          </details>
+
+          <details class="nd-card p-5 bg-white group">
+            <summary class="font-display text-sm sm:text-base font-bold text-slate-950 cursor-pointer list-none flex items-center justify-between gap-4">
+              <span>Who is NesaDiv built for?</span>
+              <span class="text-blue-600 font-mono-num text-lg group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <p class="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+              NesaDiv is built exclusively for experienced Indian professionals with <strong>6+ months of work experience</strong> and corporate HR/Talent teams. Freshers with under 6 months of experience are served by our sister platform, <a href="https://www.competence.co.in" target="_blank" rel="noopener" class="text-blue-600 font-semibold hover:underline">Competence.co.in</a>.
+            </p>
+          </details>
+
+          <details class="nd-card p-5 bg-white group">
+            <summary class="font-display text-sm sm:text-base font-bold text-slate-950 cursor-pointer list-none flex items-center justify-between gap-4">
+              <span>Does NesaDiv ever contact my current or former employer?</span>
+              <span class="text-blue-600 font-mono-num text-lg group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <p class="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+              Never. We operate under a strict <strong>Zero-BGV Policy</strong>. Your compensation inputs are used strictly to compute your report and are never shared with your current employer, past employers, or third-party recruiters.
+            </p>
+          </details>
+
+          <details class="nd-card p-5 bg-white group">
+            <summary class="font-display text-sm sm:text-base font-bold text-slate-950 cursor-pointer list-none flex items-center justify-between gap-4">
+              <span>How is True Net Monthly In-Hand calculated?</span>
+              <span class="text-blue-600 font-mono-num text-lg group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <p class="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+              Our Forensic CTC Decompiler strips out non-monthly-cash items (variable bonus, ESOPs, joining bonus, employer PF, gratuity, and insurance) to isolate Fixed Gross Salary, then applies India's deterministic FY 2026–27 New Tax Regime slabs, ₹75,000 standard deduction, Section 87A rebate, surcharge, 4% cess, employee PF, and professional tax.
+            </p>
+          </details>
+
+          <details class="nd-card p-5 bg-white group">
+            <summary class="font-display text-sm sm:text-base font-bold text-slate-950 cursor-pointer list-none flex items-center justify-between gap-4">
+              <span>How quickly are reports delivered after payment?</span>
+              <span class="text-blue-600 font-mono-num text-lg group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <p class="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+              All reports are delivered digitally and instantaneously. As soon as your payment clears, your print-ready PDF dossier unlocks on-screen and is dispatched to your email address.
+            </p>
+          </details>
         </div>
       </div>
     </section>
